@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TccCantina.Views.PageAdm" BackgroundColor="DarkCyan">
+    <ContentPage.Content>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+           
+            <Image x:Name="imgAnotacao" Source="anotacao.png" Grid.Row="1" Grid.Column="0">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="imgAnotacaoPrincipal" NumberOfTapsRequired="1" Tapped="imgAnotacaoPrincipal_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image x:Name="imgGrafico" Source="GraficoAdm.png" Grid.Row="1" Grid.Column="1">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="imgGraficoPrincipal" NumberOfTapsRequired="1" Tapped="imgGraficoPrincipal_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="Anotações" Grid.Row="2" Grid.Column="0" FontSize="Large" FontAttributes="Bold,Italic" HorizontalOptions="Center"/>
+            <Label Text="Gráficos" Grid.Row="2" Grid.Column="1" FontSize="Large" FontAttributes="Bold,Italic" HorizontalOptions="Center"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

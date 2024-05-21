@@ -1,0 +1,68 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TccCantina.Views.PageCadastrarProdutos"
+             NavigationPage.HasNavigationBar="False" BackgroundImageSource="WallpaperCadastroProdutos.jpg">
+    <ContentPage.Content>
+        <StackLayout Margin="20" Spacing="20">
+            <StackLayout HorizontalOptions="Center">
+                <Label Text="Cadastrar Produto" FontSize="24" FontAttributes="Bold" TextColor="#2196F3" Margin="0,15,0,0"/>
+                <ImageButton x:Name="btnVoltar" Source="Voltar02" HorizontalOptions="StartAndExpand" HeightRequest="32" BackgroundColor="Transparent" Margin="-65,-40,0,0" Clicked="btnVoltar_Clicked"/>
+            </StackLayout>
+            <ScrollView>
+                <Frame CornerRadius="20" HasShadow="True" BackgroundColor="DimGray">
+                    <Grid>
+                        <Image Source="LogoCantina2.png" Aspect="AspectFill" HorizontalOptions="Center" HeightRequest="500" Margin="-5,-180,0,0" Opacity="0.6"/>
+                        <StackLayout Padding="20" Spacing="15">
+                            <Frame CornerRadius="10" BackgroundColor="Transparent" Padding="5">
+                                <Entry x:Name="txtNome" Placeholder="Nome do Produto" PlaceholderColor="White" TextColor="White" FontSize="16"/>
+                            </Frame>
+                            <Frame CornerRadius="10" BackgroundColor="Transparent" Padding="5">
+                                <Entry x:Name="txtDescricao" Placeholder="Descrição do Produto" PlaceholderColor="White" TextColor="White" FontSize="16"/>
+                            </Frame>
+                            <Frame CornerRadius="10" BackgroundColor="Transparent" Padding="5">
+                                <Entry x:Name="txtValor" Placeholder="Valor do Produto" PlaceholderColor="White" TextColor="White" FontSize="16" Keyboard="Numeric"/>
+                            </Frame>
+                            <Frame CornerRadius="10" BackgroundColor="Transparent" Padding="5">
+                                <Picker x:Name="pickerTipo" Title="Selecione o Tipo do Produto" TextColor="White">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Salgados</x:String>
+                                            <x:String>Doces</x:String>
+                                            <x:String>Bebidas</x:String>
+                                            <x:String>Almoço</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+                            </Frame>
+                            <Frame CornerRadius="10" BackgroundColor="Transparent" BorderColor="CadetBlue" Padding="20" IsClippedToBounds="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer x:Name="FrmImgProduto" Tapped="FrmImgProduto_Tapped"/>
+                                </Frame.GestureRecognizers>
+                                <StackLayout>
+                                    <Image x:Name="imgProduto" Source="camera_icon.png" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label x:Name="lblAdicionarImagem" Text="Adicionar uma Imagen" TextColor="Black" FontSize="20" FontAttributes="Bold,Italic" Margin="15,-9,0,0"/>
+                                </StackLayout>
+                            </Frame>
+                            <Button x:Name="btnCadastrarProduto" Text="Publicar Produto" TextColor="White" CornerRadius="15" FontAttributes="Bold,Italic" Clicked="btnCadastrarProduto_Clicked">
+                                <Button.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Offset="0" Color="#004a29" />
+                                        <GradientStop Offset="0.25" Color="#006837" />
+                                        <GradientStop Offset="0.5" Color="#008745" />
+                                        <GradientStop Offset="0.75" Color="#00a653" />
+                                        <GradientStop Offset="1" Color="#00c361" />
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </StackLayout>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                    </Grid>
+                </Frame>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

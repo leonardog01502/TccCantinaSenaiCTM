@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TccCantina.Views.PageLogin" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="20">
+            <Image Source="LogoSenai.png" Aspect="AspectFill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="50" WidthRequest="50" Margin="0,0,0,75"/>
+            <Frame BackgroundColor="#C0C0C0" CornerRadius="25" Padding="20">
+                <StackLayout>
+                    <Image Source="LogoCantina2" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="100"/>
+                    <Entry x:Name="txtEmail" Placeholder="Email" PlaceholderColor="#8e8e93" BackgroundColor="Transparent" Margin="0,0,0,10"/>
+                    <Label x:Name="lblEmailError" TextColor="Transparent" Margin="4,-24,0,0" />
+                    <Entry x:Name="txtSenha" Placeholder="Senha" IsPassword="True" PlaceholderColor="#8e8e93" BackgroundColor="Transparent" Margin="0,0,0,20"/>
+                    <Label x:Name="lblSenhaError" TextColor="Transparent" Margin="4,-34,0,0" />
+                    <Button x:Name="btnEntrar" Text="Entrar" TextColor="White" BackgroundColor="#1877f2" CornerRadius="10" HorizontalOptions="FillAndExpand" Margin="0,0,0,10" Clicked="btnEntrar_Clicked"/>
+                </StackLayout>
+            </Frame>
+            <Label Text="------------------------------------------" FontSize="30" FontAttributes="Italic" HorizontalOptions="CenterAndExpand"/>
+            <Button x:Name="btnCadastro" Text="Cadastrar novo usuário" TextColor="#1877f2" BackgroundColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Clicked="btnCadastro_Clicked" Margin="0,20,0,0"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

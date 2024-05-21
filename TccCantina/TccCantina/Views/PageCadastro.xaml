@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TccCantina.Views.PageCadastro" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <ImageButton Source="Voltar" HorizontalOptions="StartAndExpand" HeightRequest="28" BackgroundColor="Transparent"/>
+            <Label Text="CADASTRO" FontSize="28" FontAttributes="Bold,Italic" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,0" TextColor="#4682B4"/>
+            <Frame CornerRadius="30" BackgroundColor="#C0C0C0" Margin="0,70,0,0">
+                <StackLayout>
+                    <Image Source="LogoSenai.png" Aspect="AspectFill"/>
+                    <Entry x:Name="txtID" Placeholder="ID"  IsVisible="False" IsEnabled="False"/>
+                    <Entry x:Name="txtNome" Placeholder="Nome"/>
+                    <Entry x:Name="txtCPF" Placeholder="CPF" Keyboard="Numeric" TextChanged="txtCPF_TextChanged"/>
+                    <Label x:Name="lblCPFError" TextColor="Red" IsVisible="false" Margin="5,-13,0,0"/>
+                    <Entry x:Name="txtEmail" Placeholder="Email" Keyboard="Email"/>
+                    <Label x:Name="lblEmailError" TextColor="Red" IsVisible="False" Margin="5,-13,0,0"/>
+                    <Entry x:Name="txtSenha" Placeholder="Senha"/>
+                    <Label x:Name="lblSenhaError" TextColor="Red" IsVisible="False" Margin="4,-13,0,0"/>
+                    <Entry x:Name="txtMatricula" Placeholder="Matrícula"/>
+                    <Label x:Name="lblMatriculaError" TextColor="Red" IsVisible="False" Margin="5,-13,0,0"/>
+                    <Picker x:Name="cbxCursos" Title="Selecione um curso">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Aperfeiçoamento em Automação Pneumática e Hidráulica Industrial</x:String>
+                                <x:String>Aperfeiçoamento em Instrumentação com Circuitos Hidropneumáticos</x:String>
+                                <x:String>Aperfeiçoamento em Processo de Soldagem</x:String>
+                                <x:String>Aperfeiçoamento Mecânico de Bicicleta - Básico</x:String>
+                                <x:String>Aperfeiçoamento Mecânico de Bicicleta - Intermediário</x:String>
+                                <x:String>Assistente Administrativo</x:String>
+                                <x:String>Assistente Administrativo - Curricular</x:String>
+                                <x:String>Assistente de Controle de Qualidade</x:String>
+                                <x:String>Auditorias Internas em Sistema de Gestão</x:String>
+                                <x:String>Auxiliar de Linha de Produção</x:String>
+                                <x:String>Auxiliar de Linha de Produção Curricular</x:String>
+                                <x:String>Auxiliar de Manutenção Industrial</x:String>
+                                <x:String>Eletricista de Manutenção Eletroeletrônica</x:String>
+                                <x:String>Eletricista Industrial</x:String>
+                                <x:String>Eletricista Industrial - Competências da Indústria</x:String>
+                                <x:String>Eletrônica Industrial</x:String>
+                                <x:String>Excel Avançado</x:String>
+                                <x:String>Excel Básico ao Intermediário</x:String>
+                                <x:String>Excel Intermediário</x:String>
+                                <x:String>Firewall PFsense</x:String>
+                                <x:String>Fundamentos de Administração de Servidores Linux</x:String>
+                                <x:String>Gestão de Estoque</x:String>
+                                <x:String>Impressor Flexográfico</x:String>
+                                <x:String>Informática Básica</x:String>
+                                <x:String>Instalação de Geradores de Energia Solar Fotovoltaico</x:String>
+                                <x:String>Instalações Elétricas Prediais e Industriais</x:String>
+                                <x:String>Introdução à Lógica de Programação</x:String>
+                                <x:String>Introdução à Lógica de Programação com Algoritmos</x:String>
+                                <x:String>Lean Manufacturing</x:String>
+                                <x:String>Liderança no Processo Produtivo</x:String>
+                                <x:String>Manutenção Mecânica de Processo Industriais</x:String>
+                                <x:String>Mapeamento e Modelagem de Processos</x:String>
+                                <x:String>Marketing Digital</x:String>
+                                <x:String>Metrologia Industrial</x:String>
+                                <x:String>Operador de Centro de Usinagem com Controle Numérico</x:String>
+                                <x:String>Operador de Injetora de Plástico</x:String>
+                                <x:String>Operador de Manutenção Eletromecânica</x:String>
+                                <x:String>Operador de Torno CNC</x:String>
+                                <x:String>Operador de Torno e Controle de Usinagem CNC</x:String>
+                                <x:String>Pacote Office</x:String>
+                                <x:String>PCP</x:String>
+                                <x:String>PCP - Planejamento, Programação e Controle da Produção</x:String>
+                                <x:String>Programação de Arduino e Microcontroladores</x:String>
+                                <x:String>Projeto e Dimensionamento de Sistemas Fotovoltaicos com Solergo</x:String>
+                                <x:String>Soldador</x:String>
+                                <x:String>Solidworks</x:String>
+                                <x:String>Técnico Automação Industrial</x:String>
+                                <x:String>Técnico em Automação</x:String>
+                                <x:String>Técnico em Desenvolvimento de Sistemas</x:String>
+                                <x:String>Técnico em Desenvolvimento de Sistemas - Semipresencial</x:String>
+                                <x:String>Técnico em Eletromecânica</x:String>
+                                <x:String>Técnico em Eletromecânica - Semipresencial</x:String>
+                                <x:String>Técnico em Eletrônica - Semipresencial</x:String>
+                                <x:String>Técnico em Eletrotécnica</x:String>
+                                <x:String>Técnico em Fabricação Mecânica</x:String>
+                                <x:String>Técnico em Mecatrônica - Semipresencial</x:String>
+                                <x:String>Técnico em Mecatrônica</x:String>
+                                <x:String>Torneiro Mecânico</x:String>
+                                <x:String>Análise Físico-Química</x:String>
+                                <x:String>Aplicador de Revestimento Cerâmico</x:String>
+                                <x:String>Auxiliar de Panificação</x:String>
+                                <x:String>Boas Práticas de Fabricação de Alimentos</x:String>
+                                <x:String>Corte de Costura Industrial</x:String>
+                                <x:String>Costura de Máquina Reta Overloque</x:String>
+                                <x:String>Costureiro Industrial do Vestuário</x:String>
+                                <x:String>Desenho Técnico Assistido pelo Computador</x:String>
+                                <x:String>Eletricidade Predial Básica</x:String>
+                                <x:String>Eletricista Instalador Residencial</x:String>
+                                <x:String>Eletricista Veicular</x:String>
+                                <x:String>Gestão Empresarial para Empreiteiros</x:String>
+                                <x:String>Instalação e Higienização de Aparelhos de Ar Condicionado</x:String>
+                                <x:String>Instalação e Manutenção de Aparelhos de Ar Condicionado</x:String>
+                                <x:String>Instalador Hidráulico</x:String>
+                                <x:String>Manutenção de Ar-Condicionado Automotivo</x:String>
+                                <x:String>Mecânico de Manutenção de Veículos Pesados Rodoviários</x:String>
+                                <x:String>Mecânico de Motocicletas</x:String>
+                                <x:String>Mecânico de Veículos Leves</x:String>
+                                <x:String>Mecânico de Veículos Pesados Rodoviários</x:String>
+                                <x:String>Mestre de Obras</x:String>
+                                <x:String>Modelagem BIM para Projetos Arquitetônicos</x:String>
+                                <x:String>Modelagem e Graduação de Moldes</x:String>
+                                <x:String>Modelagem Informatizada Audaces</x:String>
+                                <x:String>Montagem de Fôrmas para Paredes de Concreto</x:String>
+                                <x:String>Operador de Processos na Indústria de Alimentos</x:String>
+                                <x:String>Pedreiro de Alvenaria</x:String>
+                                <x:String>Pintor de Obras Imobiliárias</x:String>
+                                <x:String>Sistema de Suspensão e Direção de Veículos Automotivos</x:String>
+                                <x:String>Técnicas de Montagem Calças e Camisetas</x:String>
+                                <x:String>Técnico em Automotiva</x:String>
+                                <x:String>Técnico em Automotiva Semipresencial</x:String>
+                                <x:String>Técnico em Biotecnologia</x:String>
+                                <x:String>Técnico em Edificações</x:String>
+                                <x:String>Técnico em Manutenção Automotiva</x:String>
+                                <x:String>Técnico em Química Semipresencial</x:String>
+                                <x:String>Técnico em Segurança do Trabalho</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </StackLayout>
+            </Frame>
+            <Button x:Name="btnCadastro" Text="Cadastrar Usuário" CornerRadius="10" HorizontalOptions="FillAndExpand" Margin="0,20,0,0" BackgroundColor="#1E90FF" FontAttributes="Bold" Clicked="btnCadastrar_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="TccCantina.Views.PageHome" BackgroundColor="#D3D3D3"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom">
+
+    <ContentPage Title="Home" IconImageSource="Home.png" BackgroundImageSource="MenuHome.jpg">
+        <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+            <Image Source="LogoCantina3" HorizontalOptions="Center" Aspect="AspectFill" HeightRequest="170"/>
+            <Grid Margin="0,100,0,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Label Text="Salgados" TextColor="White" FontSize="24" FontAttributes="Italic,Bold" Margin="50,-25,0,0"/>
+                <Frame Grid.Row="0" Grid.Column="0" CornerRadius="20" HasShadow="True" Margin="10,10,15,30" BackgroundColor="Transparent">
+                    <StackLayout>
+                        <Image Source="Salgados.png" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="150" Margin="-19,-19,-19,-19">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="imgSalgado" NumberOfTapsRequired="1" Tapped="imgSalgado_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                </Frame>
+                <Label Text="Doce" TextColor="White" FontSize="24" FontAttributes="Italic,Bold" Grid.Row="0" Grid.Column="1" Margin="70,-22,0,0"/>
+                <Frame Grid.Row="0" Grid.Column="1" CornerRadius="20" HasShadow="True" Margin="10,10,15,30" BackgroundColor="Transparent">
+                    <StackLayout>
+                        <Image Source="Doce.jpg" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="150" Margin="-19,-19,-19,-19">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="imgDoce" NumberOfTapsRequired="1" Tapped="imgDoce_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                </Frame>
+                <Label Text="Bebidas" TextColor="White" FontSize="24" FontAttributes="Italic,Bold" Grid.Row="1" Grid.Column="0" Margin="50,-5,0,0"/>
+                <Frame Grid.Row="1" Grid.Column="0" CornerRadius="20" HasShadow="True" Margin="10,30,15,0" BackgroundColor="Transparent">
+                    <StackLayout>
+                        <Image Source="Bebida.jpg" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="150" Margin="-19,-19,-19,-19">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="imgBebidas" NumberOfTapsRequired="1" Tapped="imgBebidas_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                </Frame>
+                <Label Text="Almoço" TextColor="White" FontSize="24" FontAttributes="Italic,Bold" Grid.Row="1" Grid.Column="1" Margin="50,-5,0,0"/>
+                <Frame Grid.Row="1" Grid.Column="1" CornerRadius="20" HasShadow="True" Margin="10,30,15,0" BackgroundColor="Transparent">
+                    <StackLayout>
+                        <Image Source="Almoco.jpg" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="150" Margin="-19,-19,-19,-19">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="imgAlmoco" NumberOfTapsRequired="1" Tapped="imgAlmoco_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+            <Label Text="Seja Bem - Vindo" TextColor="White" FontSize="28" FontAttributes="Italic,Bold" HorizontalOptions="CenterAndExpand" Margin="-2,54,0,0" />
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage Title="Carrinho" IconImageSource="Carrinho.png">
+        <StackLayout Margin="10" BackgroundColor="White">
+
+            <ListView x:Name="lsvProdutos" RowHeight="120" ItemTapped="lsvProdutos_ItemTapped_1" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame CornerRadius="10" Margin="10" BackgroundColor="#F8F8F8" BorderColor="Black" Padding="10">
+                                <StackLayout>
+                                    <Label x:Name="lblNome" Text="{Binding Nome}" FontSize="20" FontAttributes="Bold" Margin="0,0,0,5"/>
+                                    <Label x:Name="lblDescricao" Text="{Binding Descricao}" FontSize="16" TextColor="#666" Margin="0,0,0,5"/>
+                                    <Label x:Name="lblValor" Text="{Binding Valor, StringFormat='R$ {0:F2}'}" FontSize="18" FontAttributes="Bold" TextColor="#2196F3"/>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Total do carrinho -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="EndAndExpand" Margin="0,10,0,0">
+                <Label Text="Total: " FontSize="Medium" />
+                <Label Text="" FontSize="Medium" FontAttributes="Bold" TextColor="Green" />
+            </StackLayout>
+
+            <!-- Botão para finalizar compra -->
+            <Button Text="Finalizar Compra" HorizontalOptions="FillAndExpand" VerticalOptions="End" CornerRadius="20" BackgroundColor="#FF5733" TextColor="White" Margin="0,20,0,0" />
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage Title="Lista" IconImageSource="Lista.png">
+        
+    </ContentPage>
+
+    <ContentPage Title="Perfil" IconImageSource="Perfil.png">
+        <ScrollView>
+            <Grid>
+                <BoxView x:Name="Gradiente" Scale="4" AnchorX="1" AnchorY="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#FFD700" Offset="0.0" />
+                            <GradientStop Color="#FFA500" Offset="0.1" />
+                            <GradientStop Color="#FF6347" Offset="0.2" />
+                            <GradientStop Color="#FF0000" Offset="0.3" />
+                            <GradientStop Color="#800080" Offset="0.4" />
+                            <GradientStop Color="#1E90FF" Offset="0.5" />
+                            <GradientStop Color="#4682B4" Offset="0.6" />
+                            <GradientStop Color="#32CD32" Offset="0.7" />
+                            <GradientStop Color="#FFFF00" Offset="0.8" />
+                            <GradientStop Color="#00FFFF" Offset="0.9" />
+                            <GradientStop Color="#FFFFFF" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+                <Frame BackgroundColor="Transparent">
+                    <StackLayout Margin="20">
+                        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center">
+                            <Frame BorderColor="Gray" CornerRadius="60" HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer x:Name="imgFotoDePerfil"/>
+                                </Frame.GestureRecognizers>
+                                <Image x:Name="fotoPerfil" Source="perfil_placeholder.png" Aspect="Fill" HeightRequest="80" WidthRequest="80"/>
+                            </Frame>
+                        </StackLayout>
+                        <Frame BorderColor="Gray" CornerRadius="30" Padding="20" Margin="0,85,0,0">
+                            <StackLayout>
+                                <Label x:Name="lblNome" Text="Nome:" FontSize="Medium" FontAttributes="Bold"/>
+                                <Label x:Name="lblnome"  Text="Informação não encontrada" FontSize="Medium"/>
+                                <Label x:Name="lblCpf" Text="CPF:" FontSize="Medium" FontAttributes="Bold"/>
+                                <Label x:Name="lblcpf" Text="Informação não encontrada" FontSize="Medium"/>
+                                <Label x:Name="lblEmail" Text="Email:" FontSize="Medium" FontAttributes="Bold"/>
+                                <Label x:Name="lblemail" Text="Informação não encontrada" FontSize="Medium"/>
+                                <Label x:Name="lblMatricula" Text="Matrícula:" FontSize="Medium" FontAttributes="Bold"/>
+                                <Label x:Name="lblmatricula" Text="Informação não encontrada" FontSize="Medium"/>
+                                <Label x:Name="lblCurso" Text="Curso:" FontSize="Medium" FontAttributes="Bold"/>
+                                <Label x:Name="lblcurso" Text="Informação não encontrada" FontSize="Medium"/>
+                                <Label x:Name="lblTipo" Text="Tipo:" FontSize="Medium" FontAttributes="Bold"/>
+                                <Label x:Name="lbltipo" Text="Informação não encontrada" FontSize="Medium"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </ScrollView>
+    </ContentPage>
+</TabbedPage>
+    

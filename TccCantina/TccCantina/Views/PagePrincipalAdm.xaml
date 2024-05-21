@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="TccCantina.Views.PagePrincipalAdm" IsPresented="True">
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu">
+            <Grid>
+                <BoxView x:Name="GradientePrincipal" Scale="4" AnchorX="1" AnchorY="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="Black" Offset="0.1" />
+                            <GradientStop Color="#1C1C1C" Offset="0.2" />
+                            <GradientStop Color="#363636" Offset="0.3" />
+                            <GradientStop Color="#4F4F4F" Offset="0.4" />
+                            <GradientStop Color="#696969" Offset="0.5" />
+                            <GradientStop Color="#808080" Offset="0.6" />
+                            <GradientStop Color="#A9A9A9" Offset="0.7" />
+                            <GradientStop Color="White" Offset="1.1" />
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+                <StackLayout Margin="10">
+
+                    <Label Text="Esqueci" FontSize="Large" HorizontalOptions="Center" Margin="0,0,0,50"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="Home.png"/>
+                        <Button x:Name="btnHome" Text="HOME" HorizontalOptions="FillAndExpand" Clicked="btnHome_Clicked"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="CadastroProdutos.png"/>
+                        <Button x:Name="btnCadastrar" Text="CADASTRAR PRODUTOS" HorizontalOptions="FillAndExpand" Clicked="btnCadastrar_Clicked"/>
+                    </StackLayout>
+
+                    <StackLayout VerticalOptions="FillAndExpand"/>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="Sobre.png"/>
+                        <Button x:Name="btnSobre" Text="SOBRE" HorizontalOptions="FillAndExpand" Clicked="btnSobre_Clicked"/>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <ContentPage Title="Principal">
+            <Label x:Name="testeDb" Text="Olá..."/>
+        </ContentPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>
