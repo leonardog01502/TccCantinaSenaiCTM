@@ -1,0 +1,15 @@
+winchester01502@gmail.com
+
+123#123#
+
+sql.freedb.tech
+
+3306
+
+freedb_TccCantinaSenai
+
+freedb_TccCantinaSenai
+
+k66@f!ge$CD#qZV
+
+query: SELECT Produtos.*,Usuarios.*,Carrinho.* from Produtos,Usuarios,Carrinho where Carrinho.IdUsuario=Usuarios.Id and Carrinho.IdProdutos=Produtos.Id;
