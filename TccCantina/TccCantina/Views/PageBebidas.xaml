@@ -3,10 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TccCantina.Views.PageBebidas">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="10">
+            <Label Text="Produtos" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20"/>
+            <ListView x:Name="lsvProdutos" RowHeight="120" ItemTapped="lsvProdutos_ItemTapped" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame CornerRadius="10" Margin="10" BackgroundColor="#F8F8F8" BorderColor="Black" Padding="10">
+                                <StackLayout>
+                                    <Label x:Name="lblNome" Text="{Binding Nome}" FontSize="20" FontAttributes="Bold" Margin="0,0,0,5"/>
+                                    <Label x:Name="lblDescricao" Text="{Binding Descricao}" FontSize="16" TextColor="#666" Margin="0,0,0,5"/>
+                                    <Label x:Name="lblValor" Text="{Binding Valor, StringFormat='R$ {0:F2}'}" FontSize="18" FontAttributes="Bold" TextColor="#2196F3"/>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnNovo" Text="NOVO" Priority="0" Order="Primary" />
+    </ContentPage.ToolbarItems>
+    
 </ContentPage>

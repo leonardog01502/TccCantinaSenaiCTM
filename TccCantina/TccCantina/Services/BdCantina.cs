@@ -122,12 +122,12 @@ namespace TccCantina.Services
                     {
                         cmd.Parameters.AddWithValue("@IdProdutos", ID);
                         cmd.Parameters.AddWithValue("@Quantidade", quantidade);
-                        cmd.Parameters.AddWithValue("@IdUsuario", Id);
+                        cmd.Parameters.AddWithValue("@IdUsuario", 1);
                         cmd.ExecuteNonQuery();
                     }
                     con.Close();
                 }
-                StatusMessage = $"'{nome}' adicionado ao carrinho!";
+                //StatusMessage = $"'{nome}' adicionado ao carrinho!";
             }
             catch (Exception ex)
             {

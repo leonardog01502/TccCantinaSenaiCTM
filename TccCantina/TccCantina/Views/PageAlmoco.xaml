@@ -1,12 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TccCantina.Views.PageAlmoco">
+             x:Class="TccCantina.Views.PageAlmoco" NavigationPage.HasNavigationBar="False" BackgroundImageSource="PretoCardapio.jpg">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="20">
+            <Label Text="🍽️ Almoço do Dia 🍽️" TextColor="White" FontSize="32" FontAttributes="Bold,Italic" HorizontalOptions="Center" Margin="9,25,0,20"/>
+            <ImageButton Source="Voltar02" HorizontalOptions="StartAndExpand" HeightRequest="35" BackgroundColor="Transparent" Margin="0,-100,0,0"/>
+
+            <Frame HasShadow="True" Padding="0" CornerRadius="30" BackgroundColor="White" VerticalOptions="StartAndExpand" WidthRequest="500" HeightRequest="500" Margin="10,50,10,0">
+                <Image Source="Almoco.png" Aspect="AspectFill"/>
+            </Frame>
+
+            <Frame Padding="20" CornerRadius="25" BackgroundColor="White" Margin="0,20,0,40">
+                <StackLayout Spacing="10">
+                    <Label Text="Cardápio 📋" TextColor="Black" FontSize="24" FontAttributes="Bold"/>
+                    <Label Text="Arroz, Feijão, Frango à Passarinho, Salada de Alface e Tomate" TextColor="Black" FontSize="18" FontAttributes="Bold,Italic" Margin="0,15,0,0"/>
+                    <Label Text="Preço:" TextColor="Black" FontSize="19" FontAttributes="Bold,Italic"/>
+                    <Label Text=" R$ 150,00" TextColor="DarkGreen" FontSize="19" FontAttributes="Bold,Italic" Margin="55,-34,0,0"/>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="LogoCantina2.png" Aspect="AspectFill" HorizontalOptions="Center" HeightRequest="500" Margin="-90,-290,0,-200" Opacity="0.0"/>
+                    </StackLayout>
+
+                    <Button Text="Adicionar ao Pedido" BackgroundColor="#FF5733" TextColor="White" CornerRadius="10"/>
+                </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

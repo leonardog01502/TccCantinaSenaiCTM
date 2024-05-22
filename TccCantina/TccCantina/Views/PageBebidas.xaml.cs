@@ -16,5 +16,10 @@ namespace TccCantina.Views
         {
             InitializeComponent();
         }
+
+        private void lsvProdutos_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+
+        }
     }
 }
