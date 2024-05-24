@@ -33,7 +33,6 @@ namespace TccCantina.Views
         {
             if (e.Item is Produtos produtoSelecionado)
             {
-                // Passe as informações do produto para a PagePopUp
                 var popUpContentView = new PagePopUp(produtoSelecionado.Id);
                 var popupPage = new ContentPage
                 {
@@ -45,6 +44,9 @@ namespace TccCantina.Views
             }
         }
 
-
+        private async void btnVoltar_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }

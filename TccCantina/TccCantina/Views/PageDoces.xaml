@@ -1,18 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TccCantina.Views.PageDoces">
+             x:Class="TccCantina.Views.PageDoces" NavigationPage.HasNavigationBar="False">
+    
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <Label Text="Produtos" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20"/>
+            <ImageButton x:Name="btnVoltar" Source="Voltar" HorizontalOptions="StartAndExpand" HeightRequest="35" BackgroundColor="Transparent" Margin="10,20,0,0" Clicked="btnVoltar_Clicked"/>
+            <Label Text="🍬  Doces 🍬" TextColor="Black" FontSize="30" FontAttributes="Bold,Italic" HorizontalOptions="Center" Margin="0,-30,0,0"/>
             <ListView x:Name="lsvProdutos" RowHeight="120" ItemTapped="lsvProdutos_ItemTapped" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame CornerRadius="10" Margin="10" BackgroundColor="#F8F8F8" BorderColor="Black" Padding="10">
+                            <Frame CornerRadius="10" Margin="3" BackgroundColor="#FFFFFF" BorderColor="#CCCCCC" Padding="10" HasShadow="True">
                                 <StackLayout>
                                     <Label x:Name="lblNome" Text="{Binding Nome}" FontSize="20" FontAttributes="Bold" Margin="0,0,0,5"/>
-                                    <Label x:Name="lblDescricao" Text="{Binding Descricao}" FontSize="16" TextColor="#666" Margin="0,0,0,5"/>
+                                    <Label x:Name="lblDescricao" Text="{Binding Descricao}" FontSize="16" TextColor="#666666" Margin="0,0,0,5"/>
                                     <Label x:Name="lblValor" Text="{Binding Valor, StringFormat='R$ {0:F2}'}" FontSize="18" FontAttributes="Bold" TextColor="#2196F3"/>
                                 </StackLayout>
                             </Frame>

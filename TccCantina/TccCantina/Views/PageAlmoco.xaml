@@ -4,7 +4,7 @@
     <ContentPage.Content>
         <StackLayout Padding="20">
             <Label Text="🍽️ Almoço do Dia 🍽️" TextColor="White" FontSize="32" FontAttributes="Bold,Italic" HorizontalOptions="Center" Margin="9,25,0,20"/>
-            <ImageButton Source="Voltar02" HorizontalOptions="StartAndExpand" HeightRequest="35" BackgroundColor="Transparent" Margin="0,-100,0,0"/>
+            <ImageButton x:Name="btnVoltar" Source="Voltar02" HorizontalOptions="StartAndExpand" HeightRequest="35" BackgroundColor="Transparent" Margin="0,-100,0,0" Clicked="btnVoltar_Clicked"/>
 
             <Frame HasShadow="True" Padding="0" CornerRadius="30" BackgroundColor="White" VerticalOptions="StartAndExpand" WidthRequest="500" HeightRequest="500" Margin="10,50,10,0">
                 <Image Source="Almoco.png" Aspect="AspectFill"/>

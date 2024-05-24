@@ -16,5 +16,10 @@ namespace TccCantina.Views
         {
             InitializeComponent();
         }
+
+        private async void btnVoltar_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }

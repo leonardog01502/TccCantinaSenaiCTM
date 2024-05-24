@@ -10,7 +10,7 @@ namespace TccCantina
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new PageCadastro());
+            MainPage = new NavigationPage(new PageAdm());
         }
 
         protected override void OnStart()
