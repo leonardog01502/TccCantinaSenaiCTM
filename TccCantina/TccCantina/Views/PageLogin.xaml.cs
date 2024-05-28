@@ -18,6 +18,25 @@ namespace TccCantina.Views
         public PageLogin()
         {
             InitializeComponent();
+            CheckStoredCredentials();
+        }
+
+        private async void CheckStoredCredentials()
+        {
+            string storedEmail = await SecureStorage.GetAsync("@Email");
+            string storedSenha = await SecureStorage.GetAsync("@Senha");
+
+            if (!string.IsNullOrEmpty(storedEmail) && !string.IsNullOrEmpty(storedSenha))
+            {
+                bool loginSucesso = BdCantina.LocalizarLogin(storedEmail, storedSenha);
+
+                if (loginSucesso)
+                {
+                    BdCantina.InformacoesUsuario(storedEmail, storedSenha);
+                    await Navigation.PushAsync(new PageHome());
+                    Navigation.RemovePage(this);
+                }
+            }
         }
 
         private async void btnEntrar_Clicked(object sender, EventArgs e)
@@ -25,7 +44,7 @@ namespace TccCantina.Views
             string email = txtEmail.Text;
             string senha = txtSenha.Text;
 
-            if (email == "Adimin" && senha == "Adimin") //correto é Admin, corrigir depois
+            if (email == "Admin" && senha == "Admin")
             {
                 PageAdm adm = new PageAdm();
                 await Navigation.PushAsync(adm);
@@ -44,6 +63,9 @@ namespace TccCantina.Views
 
                     if (loginSucesso)
                     {
+                        await SecureStorage.SetAsync("@Email", email);
+                        await SecureStorage.SetAsync("@Senha", senha);
+
                         BdCantina.InformacoesUsuario(email, senha);
                         await Navigation.PushAsync(new PageHome());
                         Navigation.RemovePage(this);
@@ -51,11 +73,10 @@ namespace TccCantina.Views
                     else
                     {
                         lblEmailError.Text = "Email ou Senha incorretos";
-                        //lblSenhaError.Text = "Senha incorreta";
                         lblEmailError.TextColor = Color.Red;
                         lblSenhaError.TextColor = Color.Red;
 
-                        await DisplayAlert("Aviso", "Faça um cadastro para vc entra em nosso Aplicativo, Obrigado ;)", "Ok");
+                        await DisplayAlert("Aviso", "Faça um cadastro para você entrar em nosso Aplicativo, Obrigado ;)", "Ok");
                     }
                 }
                 catch (Exception ex)

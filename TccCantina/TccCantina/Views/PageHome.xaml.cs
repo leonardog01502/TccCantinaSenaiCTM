@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TccCantina.Models;
 using TccCantina.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -68,6 +69,13 @@ namespace TccCantina.Views
         private void lsvProdutos_ItemTapped_1(object sender, ItemTappedEventArgs e)
         {
 
+        }
+
+        private async void btnLogout_Clicked(object sender, EventArgs e)
+        {
+            SecureStorage.Remove("@Email");
+            SecureStorage.Remove("@Senha");
+            await Navigation.PushAsync(new PageLogin());
         }
     }
 }
