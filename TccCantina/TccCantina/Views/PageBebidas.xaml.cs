@@ -16,5 +16,15 @@ namespace TccCantina.Views
         {
             InitializeComponent();
         }
+
+        private void lsvProdutos_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+
+        }
+
+        private async void btnVoltar_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }

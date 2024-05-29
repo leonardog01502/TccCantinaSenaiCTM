@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="20">
             <Image Source="LogoSenai.png" Aspect="AspectFill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="50" WidthRequest="50" Margin="0,0,0,75"/>
-            <Frame BackgroundColor="#C0C0C0" CornerRadius="25" Padding="20">
+            <Frame BackgroundColor="#C0C0C0" BorderColor="Black" CornerRadius="25" Padding="20">
                 <StackLayout>
                     <Image Source="LogoCantina2" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="100"/>
                     <Entry x:Name="txtEmail" Placeholder="Email" PlaceholderColor="#8e8e93" BackgroundColor="Transparent" Margin="0,0,0,10"/>

@@ -2,6 +2,7 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   x:Class="TccCantina.Views.PagePrincipalAdm" IsPresented="True">
+    
     <MasterDetailPage.Master>
         <ContentPage Title="Menu">
             <Grid>

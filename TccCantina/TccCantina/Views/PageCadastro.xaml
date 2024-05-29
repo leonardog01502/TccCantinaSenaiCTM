@@ -4,11 +4,12 @@
              x:Class="TccCantina.Views.PageCadastro" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout Margin="20">
-            <ImageButton Source="Voltar" HorizontalOptions="StartAndExpand" HeightRequest="28" BackgroundColor="Transparent"/>
-            <Label Text="CADASTRO" FontSize="28" FontAttributes="Bold,Italic" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,0" TextColor="#4682B4"/>
-            <Frame CornerRadius="30" BackgroundColor="#C0C0C0" Margin="0,70,0,0">
+            <ImageButton Source="Voltar" HorizontalOptions="StartAndExpand" HeightRequest="35" BackgroundColor="Transparent"/>
+            <Label Text="CADASTRO" FontSize="28" FontAttributes="Bold,Italic" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,-15,0,0" TextColor="#4682B4"/>
+            <Frame CornerRadius="30" BackgroundColor="#C0C0C0" BorderColor="Black" Margin="0,70,0,0">
                 <StackLayout>
                     <Image Source="LogoSenai.png" Aspect="AspectFill"/>
+                    <Image Source="LogoCantina2.png" Aspect="AspectFill" HorizontalOptions="Center" HeightRequest="600" Margin="-4,-180,0,-440" Opacity="0.4"/>
                     <Entry x:Name="txtID" Placeholder="ID"  IsVisible="False" IsEnabled="False"/>
                     <Entry x:Name="txtNome" Placeholder="Nome"/>
                     <Entry x:Name="txtCPF" Placeholder="CPF" Keyboard="Numeric" TextChanged="txtCPF_TextChanged"/>
@@ -17,7 +18,7 @@
                     <Label x:Name="lblEmailError" TextColor="Red" IsVisible="False" Margin="5,-13,0,0"/>
                     <Entry x:Name="txtSenha" Placeholder="Senha"/>
                     <Label x:Name="lblSenhaError" TextColor="Red" IsVisible="False" Margin="4,-13,0,0"/>
-                    <Entry x:Name="txtMatricula" Placeholder="Matrícula"/>
+                    <Entry x:Name="txtMatricula" Placeholder="Matrícula" Keyboard="Numeric"/>
                     <Label x:Name="lblMatriculaError" TextColor="Red" IsVisible="False" Margin="5,-13,0,0"/>
                     <Picker x:Name="cbxCursos" Title="Selecione um curso">
                         <Picker.ItemsSource>

@@ -133,9 +133,9 @@ namespace TccCantina.Services
                     }
                     con.Close();
                 }
-                //StatusMessage = $"'{nome}' adicionado ao carrinho!";
+                StatusMessage = $"'{ID}' adicionado ao carrinho!";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 StatusMessage = $"Erro ao adicionar no carrinho";
             }
@@ -166,8 +166,8 @@ namespace TccCantina.Services
 
         public static List<CarrinhoFiltrado> ListarCarrinho(int id)
         {
-            List<CarrinhoFiltrado> listacarrinho = new List<CarrinhoFiltrado>();
-            string sql1 = "SELECT Carrinho.*,Produtos.* from Carrinho,Produtos Where Carrinho.IdUsuario = @Id";
+            List<Carrinho> listacarrinho = new List<Carrinho>();
+            string sql = "SELECT * FROM Carrinho";
             using (MySqlConnection con = new MySqlConnection(conn))
             {
                 con.Open();
