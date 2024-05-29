@@ -18,25 +18,6 @@ namespace TccCantina.Views
         public PageLogin()
         {
             InitializeComponent();
-            CheckStoredCredentials();
-        }
-
-        private async void CheckStoredCredentials()
-        {
-            string storedEmail = await SecureStorage.GetAsync("@Email");
-            string storedSenha = await SecureStorage.GetAsync("@Senha");
-
-            if (!string.IsNullOrEmpty(storedEmail) && !string.IsNullOrEmpty(storedSenha))
-            {
-                bool loginSucesso = BdCantina.LocalizarLogin(storedEmail, storedSenha);
-
-                if (loginSucesso)
-                {
-                    BdCantina.InformacoesUsuario(storedEmail, storedSenha);
-                    await Navigation.PushAsync(new PageHome());
-                    Navigation.RemovePage(this);
-                }
-            }
         }
 
         private async void btnEntrar_Clicked(object sender, EventArgs e)
