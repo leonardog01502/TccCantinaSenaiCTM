@@ -24,6 +24,7 @@ namespace TccCantina.Views
         {
             string email = txtEmail.Text;
             string senha = txtSenha.Text;
+            int Id;
 
             if (email == "Adimin" && senha == "Adimin") //correto é Admin, corrigir depois
             {
@@ -40,12 +41,12 @@ namespace TccCantina.Views
 
                 try
                 {
-                    bool loginSucesso = BdCantina.LocalizarLogin(email, senha);
+                    int id = BdCantina.LocalizarLogin(email, senha);
 
-                    if (loginSucesso)
+                    if (id > 0)
                     {
                         BdCantina.InformacoesUsuario(email, senha);
-                        await Navigation.PushAsync(new PageHome());
+                        await Navigation.PushAsync(new PageHome(id));
                         Navigation.RemovePage(this);
                     }
                     else

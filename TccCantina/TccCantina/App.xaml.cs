@@ -1,5 +1,7 @@
 ﻿using System;
+using TccCantina.Services;
 using TccCantina.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,10 +12,10 @@ namespace TccCantina
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new PageCadastrarProdutos());
+            MainPage = new NavigationPage(new PageLogin());
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
         }
 

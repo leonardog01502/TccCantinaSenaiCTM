@@ -41,11 +41,11 @@ namespace TccCantina.Services
             }
         }
 
-        public static bool LocalizarLogin(string email, string senha)
+        public static int LocalizarLogin(string email, string senha)
         {
             try
             {
-                string query = "SELECT COUNT(*) FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
+                string query = "SELECT * FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
 
                 using (MySqlConnection con = new MySqlConnection(conn))
                 {
@@ -54,9 +54,15 @@ namespace TccCantina.Services
                     {
                         cmd.Parameters.AddWithValue("@Email", email);
                         cmd.Parameters.AddWithValue("@Senha", senha);
-                        int count = Convert.ToInt32(cmd.ExecuteScalar());
-
-                        return count > 0;
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id;
+                                return id = reader.GetInt32("Id");
+                            };
+                            return 0;
+                        }
                     }
                 }
             }
@@ -122,12 +128,12 @@ namespace TccCantina.Services
                     {
                         cmd.Parameters.AddWithValue("@IdProdutos", ID);
                         cmd.Parameters.AddWithValue("@Quantidade", quantidade);
-                        cmd.Parameters.AddWithValue("@IdUsuario", Id);
+                        cmd.Parameters.AddWithValue("@IdUsuario", 1);
                         cmd.ExecuteNonQuery();
                     }
                     con.Close();
                 }
-                StatusMessage = $"'{nome}' adicionado ao carrinho!";
+                //StatusMessage = $"'{nome}' adicionado ao carrinho!";
             }
             catch (Exception ex)
             {
@@ -158,28 +164,30 @@ namespace TccCantina.Services
             }
         }
 
-        public static List<Carrinho> ListarCarrinho()
+        public static List<CarrinhoFiltrado> ListarCarrinho(int id)
         {
-            List<Carrinho> listacarrinho = new List<Carrinho>();
-            string sql = "SELECT * FROM Produtos";
+            List<CarrinhoFiltrado> listacarrinho = new List<CarrinhoFiltrado>();
+            string sql1 = "SELECT Carrinho.*,Produtos.* from Carrinho,Produtos Where Carrinho.IdUsuario = @Id";
             using (MySqlConnection con = new MySqlConnection(conn))
             {
                 con.Open();
-                using (MySqlCommand cmd = new MySqlCommand(sql, con))
+                using (var cmd = new MySqlCommand(sql1, con))
                 {
+                    cmd.Parameters.AddWithValue("@Id", id);
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            //Carrinho carrinho = new Carrinho();
-                            //carrinho.Id = reader.GetInt32("Id");
-                            //carrinho.IdProduto = reader.GetInt32("IdPruduto");
-                            //carrinho.IdUsuario = reader.GetInt32("IdUsuario");
-                            //carrinho.Quantidade = reader.GetInt32("Quantidade");
-                            //listacarrinho.Add(carrinho);
+                            CarrinhoFiltrado carrinhoFiltrado = new CarrinhoFiltrado();
+                            carrinhoFiltrado.Id = reader.GetInt32("Id");
+                            carrinhoFiltrado.Nome = reader.GetString("Nome");
+                            carrinhoFiltrado.Quantidade = reader.GetInt32("Quantidade");
+                            
+                            listacarrinho.Add(carrinhoFiltrado);
                         };
                     }
                 }
+
                 con.Close();
                 return listacarrinho;
             }
@@ -333,5 +341,28 @@ namespace TccCantina.Services
 
             return listaProdutos;
         }
+        public static string nomePessoa(int ID)
+        {
+            string nome = null;
+            string query = "SELECT Nome FROM Usuarios WHERE Id = @Id";
+            using (MySqlConnection con = new MySqlConnection(conn))
+            {
+                con.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Id", ID);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            nome = reader.GetString("Nome");
+                        }
+                    }
+                }
+                con.Close();
+            }
+            return nome;
+        }
+
     }
 }

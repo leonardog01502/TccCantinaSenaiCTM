@@ -43,4 +43,11 @@ namespace TccCantina.Models
         public int Quantidade { get; set; }
         public byte[] Foto { get; set; }
     }
+
+    public class CarrinhoFiltrado 
+    {
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public int Quantidade { get; set; }
+    }
 }

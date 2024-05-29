@@ -50,7 +50,7 @@
                     </StackLayout>
                 </Frame>
             </Grid>
-            <Label Text="Seja Bem - Vindo" TextColor="White" FontSize="28" FontAttributes="Italic,Bold" HorizontalOptions="CenterAndExpand" Margin="-2,54,0,0" />
+            <Label x:Name="txtNomeUser" Text="Seja Bem - Vindo" TextColor="White" FontSize="28" FontAttributes="Italic,Bold" HorizontalOptions="CenterAndExpand" Margin="-2,54,0,0" />
         </StackLayout>
     </ContentPage>
 
@@ -63,9 +63,9 @@
                         <ViewCell>
                             <Frame CornerRadius="10" Margin="10" BackgroundColor="#F8F8F8" BorderColor="Black" Padding="10">
                                 <StackLayout>
-                                    <Label x:Name="lblNome" Text="{Binding Nome}" FontSize="20" FontAttributes="Bold" Margin="0,0,0,5"/>
-                                    <Label x:Name="lblDescricao" Text="{Binding Descricao}" FontSize="16" TextColor="#666" Margin="0,0,0,5"/>
-                                    <Label x:Name="lblValor" Text="{Binding Valor, StringFormat='R$ {0:F2}'}" FontSize="18" FontAttributes="Bold" TextColor="#2196F3"/>
+                                    <Label x:Name="lblNome" Text="{Binding Nome, Mode=TwoWay}" TextColor="Black" FontSize="20" FontAttributes="Bold" Margin="0,0,0,5"/>
+                                    <Label x:Name="lblQuantidade" Text="{Binding Quantidade, Mode=TwoWay}" TextColor="Black" FontSize="16" Margin="0,0,0,5"/>
+                                    <!--<Label x:Name="lblValor" Text="{Binding Valor, StringFormat='R$ {0:F2}'}" TextColor="Black" FontSize="18" FontAttributes="Bold"/>-->
                                 </StackLayout>
                             </Frame>
                         </ViewCell>
