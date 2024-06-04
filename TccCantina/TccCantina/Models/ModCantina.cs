@@ -49,5 +49,11 @@ namespace TccCantina.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public int Quantidade { get; set; }
+        public decimal Valor { get; set; }
+    }
+
+    public class TotalCarrinho
+    {
+        public decimal ValorTotal { get; set; }
     }
 }

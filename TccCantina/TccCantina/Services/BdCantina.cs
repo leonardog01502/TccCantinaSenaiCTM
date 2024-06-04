@@ -182,6 +182,7 @@ namespace TccCantina.Services
                             carrinhoFiltrado.Id = reader.GetInt32("Id");
                             carrinhoFiltrado.Nome = reader.GetString("Nome");
                             carrinhoFiltrado.Quantidade = reader.GetInt32("Quantidade");
+                            carrinhoFiltrado.Valor = reader.GetDecimal("Valor");
 
                             listacarrinho.Add(carrinhoFiltrado);
                         };
@@ -191,6 +192,32 @@ namespace TccCantina.Services
                 con.Close();
                 return listacarrinho;
             }
+        }
+        public static List<TotalCarrinho> ValorCarrinho(int Id)
+        {
+            List<TotalCarrinho> totalcarrinho = new List<TotalCarrinho>();
+            string query = "SELECT SUM(Produtos.Valor * Carrinho.Quantidade) AS Total FROM Carrinho INNER JOIN Produtos ON Carrinho.IdProdutos = Produtos.Id WHERE Carrinho.IdUsuario = @Id;";
+
+            using (MySqlConnection con = new MySqlConnection(conn))
+            {
+                con.Open();
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Id", Id);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            TotalCarrinho carrinhoTotal = new TotalCarrinho();
+                            carrinhoTotal.ValorTotal = reader.GetDecimal("Total");
+
+                            totalcarrinho.Add(carrinhoTotal);
+                        };
+                    }
+                }
+                con.Close();
+            }
+            return totalcarrinho;
         }
 
         public static void CadastrarProduto(Produtos produto)

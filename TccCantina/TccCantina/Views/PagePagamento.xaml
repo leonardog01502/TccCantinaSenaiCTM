@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TccCantina.Views.PaymentPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Itens da Compra" 
+                   FontSize="Large" 
+                   HorizontalOptions="Center" />
+
+            <!-- Lista de itens -->
+            <ListView x:Name="ItemsListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="5">
+                                <Label Text="{Binding Name}" 
+                                       FontSize="Medium" 
+                                       VerticalOptions="Center" />
+                                <Label Text="{Binding Price, StringFormat='R$ {0:F2}'}" 
+                                       FontSize="Medium" 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Valor total -->
+            <StackLayout Orientation="Horizontal" Padding="5">
+                <Label Text="Total:" 
+                       FontSize="Large" 
+                       VerticalOptions="Center" />
+                <Label x:Name="TotalPriceLabel" 
+                       FontSize="Large" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+
+            <!-- Botão para finalizar compra -->
+            <Button Text="Finalizar Compra" 
+                    FontSize="Medium" 
+                    BackgroundColor="Green" 
+                    TextColor="White" 
+                    VerticalOptions="End" 
+                    Clicked="OnCheckoutButtonClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

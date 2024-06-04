@@ -39,6 +39,9 @@ namespace TccCantina.Views
                 lsvProdutos.ItemsSource = Carrinho;
                 
             }
+            List<TotalCarrinho> totalCarrinhoList = BdCantina.ValorCarrinho(idUser);
+            decimal total = totalCarrinhoList.Sum(tc => tc.ValorTotal);
+            txtValorTotal.Text = total.ToString();
         }
 
         private void imgSalgado_Tapped(object sender, EventArgs e)
