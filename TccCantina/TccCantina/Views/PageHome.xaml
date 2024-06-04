@@ -3,7 +3,17 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="TccCantina.Views.PageHome" BackgroundColor="#D3D3D3"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-            android:TabbedPage.ToolbarPlacement="Bottom">
+            android:TabbedPage.ToolbarPlacement="Bottom" windows:TabbedPage.HeaderIconsEnabled="true"
+            xmlns:windows="clr-namespace:Xamarin.Forms.PlatformConfiguration.WindowsSpecific;assembly=Xamarin.Forms.Core">
+
+    <windows:TabbedPage.HeaderIconsSize>
+        <Size>
+            <x:Arguments>
+                <x:Double>30</x:Double>
+                <x:Double>30</x:Double>
+            </x:Arguments>
+        </Size>
+    </windows:TabbedPage.HeaderIconsSize>
 
     <ContentPage Title="Home" IconImageSource="Home.png" BackgroundImageSource="MenuHome.jpg">
         <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
@@ -55,7 +65,7 @@
     </ContentPage>
 
     <ContentPage Title="Carrinho" IconImageSource="Carrinho.png">
-        <StackLayout Margin="10" BackgroundColor="White">
+        <StackLayout Margin="10" BackgroundColor="Transparent">
 
             <ListView x:Name="lsvProdutos" RowHeight="120" ItemTapped="lsvProdutos_ItemTapped_1" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
@@ -140,6 +150,6 @@
             </Grid>
         </ScrollView>
     </ContentPage>
-    
+
 </TabbedPage>
     

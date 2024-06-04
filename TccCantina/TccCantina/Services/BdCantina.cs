@@ -41,11 +41,11 @@ namespace TccCantina.Services
             }
         }
 
-        public static int LocalizarLogin(string email, string senha)
+        public static bool LocalizarLogin(string email, string senha)
         {
             try
             {
-                string query = "SELECT * FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
+                string query = "SELECT 1 FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
 
                 using (MySqlConnection con = new MySqlConnection(conn))
                 {
@@ -54,14 +54,10 @@ namespace TccCantina.Services
                     {
                         cmd.Parameters.AddWithValue("@Email", email);
                         cmd.Parameters.AddWithValue("@Senha", senha);
+
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            while (reader.Read())
-                            {
-                                int id;
-                                return id = reader.GetInt32("Id");
-                            };
-                            return 0;
+                            return reader.Read();
                         }
                     }
                 }

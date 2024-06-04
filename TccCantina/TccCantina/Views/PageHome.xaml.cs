@@ -14,31 +14,11 @@ namespace TccCantina.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageHome : TabbedPage
     {
-        int idUser;
-        public PageHome(int id)
+       
+        public PageHome()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            ModCantina modCantina = new ModCantina();
-            lblnome.Text = modCantina.Nome;
-            lblcpf.Text = modCantina.Cpf;
-            lblemail.Text = modCantina.Email;
-            lblmatricula.Text = Convert.ToString(modCantina.Matricula);
-            lblcurso.Text = modCantina.Curso;
-            lbltipo.Text = modCantina.Tipo;
-            idUser = id;
-            //txtNomeUser.Text = BdCantina.nomePessoa(id);
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            var Carrinho = BdCantina.ListarCarrinho(idUser);
-            if (Carrinho != null)
-            {
-                lsvProdutos.ItemsSource = Carrinho;
-                
-            }
         }
 
         private void imgSalgado_Tapped(object sender, EventArgs e)
@@ -79,7 +59,14 @@ namespace TccCantina.Views
         {
             SecureStorage.Remove("@Email");
             SecureStorage.Remove("@Senha");
+
             await Navigation.PushAsync(new PageLogin());
+
+            var navigationStack = Navigation.NavigationStack;
+            for (int i = navigationStack.Count - 2; i >= 0; i--)
+            {
+                Navigation.RemovePage(navigationStack[i]);
+            }
         }
     }
 }
