@@ -4,12 +4,14 @@ using System.Net.Http;
 using System.Text;
 using MySqlConnector;
 using TccCantina.Models;
+using Xamarin.Forms;
 
 namespace TccCantina.Services
 {
     public class BdCantina
     {
         static string conn = @"Host=sql.freedb.tech;Port=3306;Database=freedb_TccCantinaSenai;User ID=freedb_TccCantinaSenai;Password=k66@f!ge$CD#qZV;Charset=utf8;";
+
         public static string StatusMessage { get; set; }
 
         public static void CadastrarUsuario(ModCantina Usuario)
@@ -359,6 +361,6 @@ namespace TccCantina.Services
             }
             return nome;
         }
-
     }
 }
+
