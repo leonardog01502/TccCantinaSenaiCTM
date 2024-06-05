@@ -37,7 +37,6 @@ namespace TccCantina.Views
             if (Carrinho != null)
             {
                 lsvProdutos.ItemsSource = Carrinho;
-                
             }
             List<TotalCarrinho> totalCarrinhoList = BdCantina.ValorCarrinho(idUser);
             decimal total = totalCarrinhoList.Sum(tc => tc.ValorTotal);
@@ -70,12 +69,12 @@ namespace TccCantina.Views
 
         private void lsvProdutos_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-
+            // Empty method
         }
 
         private void lsvProdutos_ItemTapped_1(object sender, ItemTappedEventArgs e)
         {
-
+            // Empty method
         }
 
         private async void btnLogout_Clicked(object sender, EventArgs e)
@@ -83,6 +82,11 @@ namespace TccCantina.Views
             SecureStorage.Remove("@Email");
             SecureStorage.Remove("@Senha");
             await Navigation.PushAsync(new PageLogin());
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new PagePagamento());
         }
     }
 }
