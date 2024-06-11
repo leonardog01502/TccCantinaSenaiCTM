@@ -19,6 +19,29 @@ namespace TccCantina.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            ModCantina modCantina = new ModCantina();
+            lblnome.Text = modCantina.Nome;
+            lblcpf.Text = modCantina.Cpf;
+            lblemail.Text = modCantina.Email;
+            lblmatricula.Text = Convert.ToString(modCantina.Matricula);
+            lblcurso.Text = modCantina.Curso;
+            lbltipo.Text = modCantina.Tipo;
+            idUser = id;
+            //txtNomeUser.Text = BdCantina.nomePessoa(id);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            var Carrinho = BdCantina.ListarCarrinho(idUser);
+            if (Carrinho != null)
+            {
+                lsvProdutos.ItemsSource = Carrinho;
+            }
+            List<TotalCarrinho> totalCarrinhoList = BdCantina.ValorCarrinho(idUser);
+            decimal total = totalCarrinhoList.Sum(tc => tc.ValorTotal);
+            txtValorTotal.Text = total.ToString();
+
         }
 
         private void imgSalgado_Tapped(object sender, EventArgs e)
@@ -47,12 +70,12 @@ namespace TccCantina.Views
 
         private void lsvProdutos_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-
+            // Empty method
         }
 
         private void lsvProdutos_ItemTapped_1(object sender, ItemTappedEventArgs e)
         {
-
+            // Empty method
         }
 
         private async void btnLogout_Clicked(object sender, EventArgs e)
@@ -67,6 +90,11 @@ namespace TccCantina.Views
             {
                 Navigation.RemovePage(navigationStack[i]);
             }
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new PagePagamento());
         }
     }
 }

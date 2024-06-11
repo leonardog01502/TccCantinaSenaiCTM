@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TccCantina.Views.PagePagamento">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Selecione a Forma de Pagamento" 
+                   FontSize="Large" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="StartAndExpand"/>
+            <Picker x:Name="paymentPicker"
+                    Title="Formas de Pagamento"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="StartAndExpand"/>
+            <Button Text="Confirmar Pagamento"
+                    FontSize="Medium" 
+                    BackgroundColor="Green" 
+                    TextColor="White" 
+                    VerticalOptions="EndAndExpand" 
+                    Clicked="OnPaymentConfirmButtonClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
