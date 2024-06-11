@@ -12,7 +12,24 @@ namespace TccCantina
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new PageLogin());
+            MainPage = new NavigationPage(new PageSalgados());
+        }
+
+        protected override async void OnStart()
+        {
+            string storedEmail = await SecureStorage.GetAsync("@Email");
+            string storedSenha = await SecureStorage.GetAsync("Senha");
+
+            if (!string.IsNullOrEmpty(storedEmail) && !string.IsNullOrEmpty(storedSenha))
+            {
+                bool loginSucesso = BdCantina.LocalizarLogin(storedEmail, storedSenha);
+
+                if (loginSucesso)
+                {
+                    BdCantina.InformacoesUsuario(storedEmail, storedSenha);
+                    MainPage = new NavigationPage(new PageHome());
+                }
+            }
         }
 
         protected override void OnSleep()

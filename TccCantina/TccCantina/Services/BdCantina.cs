@@ -4,12 +4,14 @@ using System.Net.Http;
 using System.Text;
 using MySqlConnector;
 using TccCantina.Models;
+using Xamarin.Forms;
 
 namespace TccCantina.Services
 {
     public class BdCantina
     {
         static string conn = @"Host=sql.freedb.tech;Port=3306;Database=freedb_TccCantinaSenai;User ID=freedb_TccCantinaSenai;Password=k66@f!ge$CD#qZV;Charset=utf8;";
+
         public static string StatusMessage { get; set; }
 
         public static void CadastrarUsuario(ModCantina Usuario)
@@ -41,11 +43,11 @@ namespace TccCantina.Services
             }
         }
 
-        public static int LocalizarLogin(string email, string senha)
+        public static bool LocalizarLogin(string email, string senha)
         {
             try
             {
-                string query = "SELECT * FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
+                string query = "SELECT 1 FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
 
                 using (MySqlConnection con = new MySqlConnection(conn))
                 {
@@ -54,14 +56,10 @@ namespace TccCantina.Services
                     {
                         cmd.Parameters.AddWithValue("@Email", email);
                         cmd.Parameters.AddWithValue("@Senha", senha);
+
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            while (reader.Read())
-                            {
-                                int id;
-                                return id = reader.GetInt32("Id");
-                            };
-                            return 0;
+                            return reader.Read();
                         }
                     }
                 }
@@ -390,6 +388,7 @@ namespace TccCantina.Services
             }
             return nome;
         }
+      
         public static string GerarSenhas()
         {
             int Tamanho = 7; // Numero de digitos da senha
@@ -418,6 +417,5 @@ namespace TccCantina.Services
             }
             return senha;
         }
-
     }
 }

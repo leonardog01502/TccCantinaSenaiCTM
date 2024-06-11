@@ -14,8 +14,8 @@ namespace TccCantina.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageHome : TabbedPage
     {
-        int idUser;
-        public PageHome(int id)
+       
+        public PageHome()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
@@ -41,6 +41,7 @@ namespace TccCantina.Views
             List<TotalCarrinho> totalCarrinhoList = BdCantina.ValorCarrinho(idUser);
             decimal total = totalCarrinhoList.Sum(tc => tc.ValorTotal);
             txtValorTotal.Text = total.ToString();
+
         }
 
         private void imgSalgado_Tapped(object sender, EventArgs e)
@@ -81,7 +82,14 @@ namespace TccCantina.Views
         {
             SecureStorage.Remove("@Email");
             SecureStorage.Remove("@Senha");
+
             await Navigation.PushAsync(new PageLogin());
+
+            var navigationStack = Navigation.NavigationStack;
+            for (int i = navigationStack.Count - 2; i >= 0; i--)
+            {
+                Navigation.RemovePage(navigationStack[i]);
+            }
         }
 
         private void Button_Clicked(object sender, EventArgs e)

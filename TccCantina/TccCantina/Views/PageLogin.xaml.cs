@@ -18,13 +18,31 @@ namespace TccCantina.Views
         public PageLogin()
         {
             InitializeComponent();
+            CheckStoredCredentials();
+        }
+
+        private async void CheckStoredCredentials()
+        {
+            string storedEmail = await SecureStorage.GetAsync("@Email");
+            string storedSenha = await SecureStorage.GetAsync("@Senha");
+
+            if (!string.IsNullOrEmpty(storedEmail) && !string.IsNullOrEmpty(storedSenha))
+            {
+                bool loginSucesso = BdCantina.LocalizarLogin(storedEmail, storedSenha);
+
+                if (loginSucesso)
+                {
+                    BdCantina.InformacoesUsuario(storedEmail, storedSenha);
+                    await Navigation.PushAsync(new PageHome());
+                    Navigation.RemovePage(this);
+                }
+            }
         }
 
         private async void btnEntrar_Clicked(object sender, EventArgs e)
         {
             string email = txtEmail.Text;
             string senha = txtSenha.Text;
-            int Id;
 
             if (email == "Admin" && senha == "Admin")
             {
@@ -41,15 +59,15 @@ namespace TccCantina.Views
 
                 try
                 {
-                    int id = BdCantina.LocalizarLogin(email, senha);
+                    bool loginSucesso = BdCantina.LocalizarLogin(email, senha);
 
-                    if (id > 0)
+                    if (loginSucesso)
                     {
                         await SecureStorage.SetAsync("@Email", email);
                         await SecureStorage.SetAsync("@Senha", senha);
 
                         BdCantina.InformacoesUsuario(email, senha);
-                        await Navigation.PushAsync(new PageHome(id));
+                        await Navigation.PushAsync(new PageHome());
                         Navigation.RemovePage(this);
                     }
                     else
@@ -75,3 +93,4 @@ namespace TccCantina.Views
         }
     }
 }
+    
