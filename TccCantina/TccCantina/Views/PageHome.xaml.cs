@@ -14,7 +14,6 @@ namespace TccCantina.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageHome : TabbedPage
     {
-       
         public PageHome()
         {
             InitializeComponent();
