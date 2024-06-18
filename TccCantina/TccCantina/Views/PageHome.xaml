@@ -130,18 +130,18 @@
                         </StackLayout>
                         <Frame BorderColor="Gray" CornerRadius="30" Padding="20" Margin="0,85,0,0">
                             <StackLayout>
-                                <Label x:Name="lblNome" Text="Nome:" FontSize="Medium" FontAttributes="Bold"/>
-                                <Label x:Name="lblnome" Text="Informação não encontrada" FontSize="Medium"/>
-                                <Label x:Name="lblCpf" Text="CPF:" FontSize="Medium" FontAttributes="Bold"/>
-                                <Label x:Name="lblcpf" Text="Informação não encontrada" FontSize="Medium"/>
-                                <Label x:Name="lblEmail" Text="Email:" FontSize="Medium" FontAttributes="Bold"/>
-                                <Label x:Name="lblemail" Text="Informação não encontrada" FontSize="Medium"/>
-                                <Label x:Name="lblMatricula" Text="Matrícula:" FontSize="Medium" FontAttributes="Bold"/>
-                                <Label x:Name="lblmatricula" Text="Informação não encontrada" FontSize="Medium"/>
-                                <Label x:Name="lblCurso" Text="Curso:" FontSize="Medium" FontAttributes="Bold"/>
-                                <Label x:Name="lblcurso" Text="Informação não encontrada" FontSize="Medium"/>
-                                <Label x:Name="lblTipo" Text="Tipo:" FontSize="Medium" FontAttributes="Bold"/>
-                                <Label x:Name="lbltipo" Text="Informação não encontrada" FontSize="Medium"/>
+                                <Label x:Name="lblNome" Text="Nome:" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
+                                <Label x:Name="lblnome" Text="Informação não encontrada" FontSize="Medium" TextColor="Black"/>
+                                <Label x:Name="lblCpf" Text="CPF:" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
+                                <Label x:Name="lblcpf" Text="Informação não encontrada" FontSize="Medium" TextColor="Black"/>
+                                <Label x:Name="lblEmail" Text="Email:" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
+                                <Label x:Name="lblemail" Text="Informação não encontrada" FontSize="Medium" TextColor="Black"/>
+                                <Label x:Name="lblMatricula" Text="Matrícula:" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
+                                <Label x:Name="lblmatricula" Text="Informação não encontrada" FontSize="Medium" TextColor="Black"/>
+                                <Label x:Name="lblCurso" Text="Curso:" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
+                                <Label x:Name="lblcurso" Text="Informação não encontrada" FontSize="Medium" TextColor="Black"/>
+                                <Label x:Name="lblTipo" Text="Tipo:" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
+                                <Label x:Name="lbltipo" Text="Informação não encontrada" FontSize="Medium" TextColor="Black"/>
                             </StackLayout>
                         </Frame>
                         <Button x:Name="btnLogout" Text="Sair" BackgroundColor="#FF6347" TextColor="White" CornerRadius="10" Margin="0,20,0,0" Clicked="btnLogout_Clicked"/>

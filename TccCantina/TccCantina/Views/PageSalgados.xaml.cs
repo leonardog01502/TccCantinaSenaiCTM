@@ -25,7 +25,7 @@ namespace TccCantina.Views
         public PageSalgados()
         {
             InitializeComponent();
-            Reset();
+            //Reset();
             indexes = new List<int>();
             currentIndexes = new List<int>();
         }
@@ -60,86 +60,86 @@ namespace TccCantina.Views
             await Navigation.PopAsync();
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            Reset();
-            Label clicked = sender as Label;
-            ChangeTextColor(Convert.ToInt32(clicked.StyleId.Substring(4, 1)), Color.Yellow);
-        }
+        //private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        //{
+        //    Reset();
+        //    Label clicked = sender as Label;
+        //    ChangeTextColor(Convert.ToInt32(clicked.StyleId.Substring(4, 1)), Color.Yellow);
+        //}
 
-        void Reset()
-        {
-            ChangeTextColor(5, Color.Gray);
-        }
+        //void Reset()
+        //{
+        //    ChangeTextColor(5, Color.Gray);
+        //}
 
-        void ChangeTextColor(int starcount, Color color)
-        {
-            for (int i = 1; i <= starcount; i++)
-            {
-                (FindByName($"star{i}") as Label).TextColor = color;
-                star = Convert.ToInt32(i);
-            }
-        }
+        //void ChangeTextColor(int starcount, Color color)
+        //{
+        //    for (int i = 1; i <= starcount; i++)
+        //    {
+        //        (FindByName($"star{i}") as Label).TextColor = color;
+        //        star = Convert.ToInt32(i);
+        //    }
+        //}
 
         private void edtFeed_TextChanged(object sender, TextChangedEventArgs e)
         {
-            errorMessage.IsVisible = false;
-            Editor c = ((Editor)sender);
-            int numOfNextLines = (c.Text).Split('\n').Length;
-            string text = c.Text;
-            textCounter.Text = text.Length.ToString();
+            //errorMessage.IsVisible = false;
+            //Editor c = ((Editor)sender);
+            //int numOfNextLines = (c.Text).Split('\n').Length;
+            //string text = c.Text;
+            //textCounter.Text = text.Length.ToString();
 
-            if (numOfNextLines < 5)
-            {
-                string addedText = text.Split('\n').Last();
-                if (addedText.Length > 35)
-                {
-                    if (string.IsNullOrWhiteSpace((text.Last()).ToString()))
-                    {
-                        if (numOfNextLines < 4)
-                            c.Text += "\n";
-                        else
-                        {
-                            c.Text = e.OldTextValue;
-                            errorMessage.Text = "Reached 4 lines";
-                            errorMessage.IsVisible = true;
-                        }
-                    }
-                    else
-                    {
-                        currentIndexes.Add(c.Text.Length - 1);
-                        int lastIdx = text.LastIndexOf(" ");
-                        if (lastIdx != -1)
-                        {
-                            text = text.Remove(lastIdx, 1);
-                            c.Text = text.Insert(lastIdx, "\n");
-                            indexes.Add(lastIdx);
-                        }
-                    }
-                }
-                else
-                {
-                    if (e.NewTextValue?.Length < e.OldTextValue?.Length && currentIndexes.Contains(c.Text.Length))
-                    {
-                        if (indexes.Contains(c.Text.LastIndexOf("\n")))
-                        {
-                            int removeIdx = c.Text.LastIndexOf("\n");
-                            if (removeIdx != -1)
-                            {
-                                text = text.Remove(removeIdx, 1);
-                                c.Text = text.Insert(removeIdx, " ");
-                                indexes.Remove(removeIdx);
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                c.Text = e.OldTextValue;
-                errorMessage.Text = "Ultrapassou as 4 linhas.";
-                errorMessage.IsVisible = true;
-            }
+            //if (numOfNextLines < 5)
+            //{
+            //    string addedText = text.Split('\n').Last();
+            //    if (addedText.Length > 35)
+            //    {
+            //        if (string.IsNullOrWhiteSpace((text.Last()).ToString()))
+            //        {
+            //            if (numOfNextLines < 4)
+            //                c.Text += "\n";
+            //            else
+            //            {
+            //                c.Text = e.OldTextValue;
+            //                errorMessage.Text = "Reached 4 lines";
+            //                errorMessage.IsVisible = true;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            currentIndexes.Add(c.Text.Length - 1);
+            //            int lastIdx = text.LastIndexOf(" ");
+            //            if (lastIdx != -1)
+            //            {
+            //                text = text.Remove(lastIdx, 1);
+            //                c.Text = text.Insert(lastIdx, "\n");
+            //                indexes.Add(lastIdx);
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if (e.NewTextValue?.Length < e.OldTextValue?.Length && currentIndexes.Contains(c.Text.Length))
+            //        {
+            //            if (indexes.Contains(c.Text.LastIndexOf("\n")))
+            //            {
+            //                int removeIdx = c.Text.LastIndexOf("\n");
+            //                if (removeIdx != -1)
+            //                {
+            //                    text = text.Remove(removeIdx, 1);
+            //                    c.Text = text.Insert(removeIdx, " ");
+            //                    indexes.Remove(removeIdx);
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    c.Text = e.OldTextValue;
+            //    errorMessage.Text = "Ultrapassou as 4 linhas.";
+            //    errorMessage.IsVisible = true;
+            //}
         }
 
         private void Enviar_Clicked(object sender, EventArgs e)

@@ -22,12 +22,12 @@ namespace TccCantina
 
             if (!string.IsNullOrEmpty(storedEmail) && !string.IsNullOrEmpty(storedSenha))
             {
-                bool loginSucesso = BdCantina.LocalizarLogin(storedEmail, storedSenha);
+                int Id = BdCantina.LocalizarLogin(storedEmail, storedSenha);
 
-                if (loginSucesso)
+                if (Id > 0)
                 {
                     BdCantina.InformacoesUsuario(storedEmail, storedSenha);
-                    MainPage = new NavigationPage(new PageHome());
+                    MainPage = new NavigationPage(new PageHome(Id));
                 }
             }
         }
