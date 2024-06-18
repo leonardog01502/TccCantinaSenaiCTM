@@ -17,18 +17,14 @@ namespace TccCantina.Views
             InitializeComponent();
         }
 
-        private void imgAnotacaoPrincipal_Tapped(object sender, EventArgs e)
+        private async void imgAnotacaoPrincipal_Tapped(object sender, EventArgs e)
         {
-            MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
-            p.Detail = new NavigationPage(new PageAnotacaoPrincipal());
-            p.IsPresented = false;
+            await Navigation.PushAsync(new PageAnotacaoPrincipal());
         }
 
-        private void imgGraficoPrincipal_Tapped(object sender, EventArgs e)
+        private async void imgGraficoPrincipal_Tapped(object sender, EventArgs e)
         {
-            MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
-            p.Detail = new NavigationPage(new PageGraficoPrincipal());
-            p.IsPresented = false;
+            await Navigation.PushAsync(new PageCadastrarProdutos());
         }
     }
 }

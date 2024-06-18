@@ -3,10 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TccCantina.Views.PageAnotacaoPrincipal">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <ListView x:Name="lsvClientes" HasUnevenRows="True" Margin="15">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Id,StringFormat='Id do Cliente: {0}'}" FontSize="16" TextColor="Blue" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Nome,StringFormat='Nome do Cliente: {0}'}" FontSize="16" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Cpf,StringFormat='CPF do Cliente: {0}'}" FontSize="16" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Email,StringFormat='Email do Cliente: {0}'}" FontSize="16" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Telefone,StringFormat='Telefone do Cliente: {0}'}" FontSize="16" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Matricula,StringFormat='Matricula do Cliente: {0}'}" FontSize="16" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Curso,StringFormat='Curso do Cliente: {0}'}" FontSize="16" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Tipo,StringFormat='Tipo do Cliente: {0}'}" FontSize="16" FontAttributes="Bold"/>
+                                    <ImageButton x:Name="imgBtnZap" Source="zap.png" Clicked="imgBtnZap_Clicked"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
