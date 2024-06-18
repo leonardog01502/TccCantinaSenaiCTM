@@ -14,18 +14,19 @@ namespace TccCantina.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageHome : TabbedPage
     {
-        public PageHome()
+        int idUser;
+        public PageHome(int Id)
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            ModCantina modCantina = new ModCantina();
+            ModCantina modCantina = BdCantina.InformacoesUsuarioPorId(Id);
             lblnome.Text = modCantina.Nome;
             lblcpf.Text = modCantina.Cpf;
             lblemail.Text = modCantina.Email;
             lblmatricula.Text = Convert.ToString(modCantina.Matricula);
             lblcurso.Text = modCantina.Curso;
             lbltipo.Text = modCantina.Tipo;
-            idUser = id;
+            idUser = modCantina.Id;
             //txtNomeUser.Text = BdCantina.nomePessoa(id);
         }
 
@@ -35,6 +36,7 @@ namespace TccCantina.Views
             var Carrinho = BdCantina.ListarCarrinho(idUser);
             if (Carrinho != null)
             {
+                Console.WriteLine(Carrinho);
                 lsvProdutos.ItemsSource = Carrinho;
             }
             List<TotalCarrinho> totalCarrinhoList = BdCantina.ValorCarrinho(idUser);

@@ -10,7 +10,7 @@ namespace TccCantina.Services
 {
     public class BdCantina
     {
-        static string conn = @"Host=sql.freedb.tech;Port=3306;Database=freedb_TccCantinaSenai;User ID=freedb_TccCantinaSenai;Password=k66@f!ge$CD#qZV;Charset=utf8;";
+        static string conn = @"Host=sql10.freesqldatabase.com;Port=3306;Database=sql10714024;User ID=sql10714024;Password=wGWCbmek3c;Charset=utf8;";
 
         public static string StatusMessage { get; set; }
 
@@ -43,11 +43,12 @@ namespace TccCantina.Services
             }
         }
 
-        public static bool LocalizarLogin(string email, string senha)
+        public static int LocalizarLogin(string email, string senha)
         {
+            Object Id;
             try
             {
-                string query = "SELECT 1 FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
+                string query = "SELECT Id FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
 
                 using (MySqlConnection con = new MySqlConnection(conn))
                 {
@@ -57,9 +58,14 @@ namespace TccCantina.Services
                         cmd.Parameters.AddWithValue("@Email", email);
                         cmd.Parameters.AddWithValue("@Senha", senha);
 
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        Id = cmd.ExecuteScalar();
+                        if (Id != null)
                         {
-                            return reader.Read();
+                            return Convert.ToInt32(Id);
+                        }
+                        else
+                        {
+                            throw new Exception("Usuário não encontrado.");
                         }
                     }
                 }
@@ -107,7 +113,45 @@ namespace TccCantina.Services
             }
         }
 
-        public static void AdicionarCarrinho(int ID, int quantidade)
+        public static ModCantina InformacoesUsuarioPorId(int id)
+        {
+            try
+            {
+                string query = "SELECT * FROM Usuarios WHERE Id = @Id";
+
+                using (MySqlConnection con = new MySqlConnection(conn))
+                {
+                    con.Open();
+                    using (var cmd = new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", id);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            ModCantina modCantinaRetornar = new ModCantina();
+                            while (reader.Read())
+                            {
+                                modCantinaRetornar.Id = reader.GetInt32("Id");
+                                modCantinaRetornar.Nome = reader.GetString("Nome");
+                                modCantinaRetornar.Cpf = reader.GetString("Cpf");
+                                modCantinaRetornar.Email = reader.GetString("Email");
+                                modCantinaRetornar.Senha = reader.GetString("Senha");
+                                modCantinaRetornar.Matricula = reader.GetInt32("Matricula");
+                                modCantinaRetornar.Curso = reader.GetString("Curso");
+                                modCantinaRetornar.Tipo = reader.GetString("Tipo");
+                            };
+                            return modCantinaRetornar;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao localizar usuário: {ex.Message}");
+            }
+        }
+
+            public static void AdicionarCarrinho(int ID, int quantidade)
         {
             try
             {
@@ -165,7 +209,7 @@ namespace TccCantina.Services
         public static List<CarrinhoFiltrado> ListarCarrinho(int id)
         {
             List<CarrinhoFiltrado> listacarrinho = new List<CarrinhoFiltrado>();
-            string sql1 = "SELECT Carrinho.*,Produtos.* from Carrinho,Produtos Where Carrinho.IdUsuario = @Id";
+            string sql1 = "SELECT Carrinho.*,Produtos.* from Carrinho INNER JOIN Produtos ON Carrinho.IdProduto = Produtos.IdProdutos Where Carrinho.IdUsuario = @Id";
             using (MySqlConnection con = new MySqlConnection(conn))
             {
                 con.Open();
@@ -194,8 +238,8 @@ namespace TccCantina.Services
         public static List<TotalCarrinho> ValorCarrinho(int Id)
         {
             List<TotalCarrinho> totalcarrinho = new List<TotalCarrinho>();
-            string query = "SELECT SUM(Produtos.Valor * Carrinho.Quantidade) AS Total FROM Carrinho INNER JOIN Produtos ON Carrinho.IdProdutos = Produtos.Id WHERE Carrinho.IdUsuario = @Id;";
-
+            string query = "SELECT SUM(Produtos.Valor * Carrinho.Quantidade) AS Total FROM Carrinho INNER JOIN Produtos ON Carrinho.IdProduto = Produtos.IdProdutos WHERE Carrinho.IdUsuario = @Id;";
+            Console.WriteLine(query);
             using (MySqlConnection con = new MySqlConnection(conn))
             {
                 con.Open();
@@ -207,6 +251,7 @@ namespace TccCantina.Services
                         while (reader.Read())
                         {
                             TotalCarrinho carrinhoTotal = new TotalCarrinho();
+                            //carrinhoTotal.ValorTotal = 0;
                             carrinhoTotal.ValorTotal = reader.GetDecimal("Total");
 
                             totalcarrinho.Add(carrinhoTotal);
@@ -350,7 +395,7 @@ namespace TccCantina.Services
                         while (reader.Read())
                         {
                             Produtos produto = new Produtos();
-                            produto.Id = reader.GetInt32("Id");
+                            produto.Id = reader.GetInt32("IdProdutos");
                             produto.Nome = reader.GetString("Nome");
                             produto.Descricao = reader.GetString("Descricao");
                             produto.Valor = reader.GetDecimal("Valor");
