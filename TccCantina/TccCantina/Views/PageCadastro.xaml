@@ -18,6 +18,7 @@
                     <Label x:Name="lblEmailError" TextColor="Red" IsVisible="False" Margin="5,-13,0,0"/>
                     <Entry x:Name="txtSenha" Placeholder="Senha"/>
                     <Label x:Name="lblSenhaError" TextColor="Red" IsVisible="False" Margin="4,-13,0,0"/>
+                    <Entry x:Name="txtTelefone" Placeholder="Telefone"/>
                     <Entry x:Name="txtMatricula" Placeholder="Matrícula" Keyboard="Numeric"/>
                     <Label x:Name="lblMatriculaError" TextColor="Red" IsVisible="False" Margin="5,-13,0,0"/>
                     <Picker x:Name="cbxCursos" Title="Selecione um curso">

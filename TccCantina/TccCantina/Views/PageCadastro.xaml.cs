@@ -31,6 +31,7 @@ namespace TccCantina.Views
                     Email = txtEmail.Text,
                     Senha = txtSenha.Text,
                     Matricula = Convert.ToInt32(txtMatricula.Text),
+                    Telefone = txtTelefone.Text,
                     Curso = cbxCursos.SelectedItem.ToString()
                 };    
                 
