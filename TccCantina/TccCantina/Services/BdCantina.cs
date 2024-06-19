@@ -9,7 +9,7 @@ namespace TccCantina.Services
 {
     public class BdCantina
     {
-        static string conn = @"Host=sql.freedb.tech;Port=3306;Database=freedb_TCCcantina;User ID=freedb_TccCantina;Password=Xtt2c7snp!bh6NA;Charset=utf8;";
+        static string conn = @"Host=sql10.freesqldatabase.com;Port=3306;Database=sql10714024;User ID=sql10714024;Password=wGWCbmek3c;Charset=utf8;";
       
         public static string StatusMessage { get; set; }
 
@@ -30,6 +30,7 @@ namespace TccCantina.Services
                         cmd.Parameters.AddWithValue("@Senha", Usuario.Senha);
                         cmd.Parameters.AddWithValue("@Matricula", Usuario.Matricula);
                         cmd.Parameters.AddWithValue("@Curso", Usuario.Curso);
+                        cmd.Parameters.AddWithValue("@Telefone", Usuario.Telefone);
                         cmd.ExecuteNonQuery();
                     }
                     con.Close();
@@ -134,7 +135,7 @@ namespace TccCantina.Services
                             ModCantina modCantinaRetornar = new ModCantina();
                             while (reader.Read())
                             {
-                                modCantinaRetornar.Id = reader.GetInt32("Id");
+                                modCantinaRetornar.IdUsuario = reader.GetInt32("Id");
                                 modCantinaRetornar.Nome = reader.GetString("Nome");
                                 modCantinaRetornar.Cpf = reader.GetString("Cpf");
                                 modCantinaRetornar.Email = reader.GetString("Email");
@@ -166,14 +167,14 @@ namespace TccCantina.Services
                     con.Open();
                     using (var cmd = new MySqlCommand(query, con))
                     {
-                        cmd.Parameters.AddWithValue("@Carrinho.IdProdutos", IDCarrinho);
+                        cmd.Parameters.AddWithValue("@Carrinho.IdProdutos", ID);
                         cmd.ExecuteNonQuery();
                     }
                     using (var cmd = new MySqlCommand(query2, con))
                     {
-                        cmd.Parameters.AddWithValue("@IdProdutos", IDCarrinho);
+                        cmd.Parameters.AddWithValue("@IdProdutos", ID);
                         cmd.Parameters.AddWithValue("@Quantidade", quantidade);
-                        cmd.Parameters.AddWithValue("@IdUsuario", IDCarrinho);
+                        cmd.Parameters.AddWithValue("@IdUsuario", 1);
                         cmd.ExecuteNonQuery();
                     }
                     con.Close();
@@ -209,25 +210,27 @@ namespace TccCantina.Services
             }
         }
 
-        public static List<Carrinho> ListarCarrinho()
+        public static List<CarrinhoFiltrado> ListarCarrinho(int id)
         {
             List<CarrinhoFiltrado> listacarrinho = new List<CarrinhoFiltrado>();
             string sql1 = "SELECT Carrinho.*,Produtos.* from Carrinho INNER JOIN Produtos ON Carrinho.IdProduto = Produtos.IdProdutos Where Carrinho.IdUsuario = @Id";
             using (MySqlConnection con = new MySqlConnection(conn))
             {
                 con.Open();
-                using (MySqlCommand cmd = new MySqlCommand(sql, con))
+                using (MySqlCommand cmd = new MySqlCommand(sql1, con))
                 {
+                    cmd.Parameters.AddWithValue("@Id", id);
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            Carrinho carrinho = new Carrinho();
-                            carrinho.IdCarrinho = reader.GetInt32("IdCarrinho");
-                            carrinho.IdProduto = reader.GetInt32("IdPruduto");
-                            carrinho.IdUsuario = reader.GetInt32("IdUsuario");
-                            carrinho.Quantidade = reader.GetInt32("Quantidade");
-                            listacarrinho.Add(carrinho);
+                            CarrinhoFiltrado carrinhoFiltrado = new CarrinhoFiltrado();
+                            carrinhoFiltrado.IdCarrinhoF = reader.GetInt32("Id");
+                            carrinhoFiltrado.Nome = reader.GetString("Nome");
+                            carrinhoFiltrado.Quantidade = reader.GetInt32("Quantidade");
+                            carrinhoFiltrado.Valor = reader.GetDouble("Valor");
+
+                            listacarrinho.Add(carrinhoFiltrado);
                         };
                     }
                 }
@@ -250,7 +253,7 @@ namespace TccCantina.Services
                         while (reader.Read())
                         {
                             ModCantina cliente = new ModCantina();
-                            cliente.IdUsuario = reader.GetInt32("IdUsuario");
+                            cliente.IdUsuario = reader.GetInt32("Id");
                             cliente.Nome = reader.GetString("Nome");
                             cliente.Cpf = reader.GetString("Cpf");
                             cliente.Email = reader.GetString("Email");
@@ -259,7 +262,7 @@ namespace TccCantina.Services
                             cliente.Tipo = reader.GetString("Tipo");
                             cliente.Telefone = reader.GetString("Telefone");
                             listacliente.Add(cliente);
-			                  };
+			            };
                     }
                 }
                 con.Close();
@@ -270,20 +273,22 @@ namespace TccCantina.Services
         public static List<TotalCarrinho> ValorCarrinho(int Id)
         {
             List<TotalCarrinho> totalcarrinho = new List<TotalCarrinho>();
-            string query = "SELECT SUM(Produtos.Valor * Carrinho.Quantidade) AS Total FROM Carrinho INNER JOIN Produtos ON Carrinho.IdProduto = Produtos.IdProdutos WHERE Carrinho.IdUsuario = @Id;";
-            Console.WriteLine(query);
+            string sql = "SELECT SUM(Produtos.Valor * Carrinho.Quantidade) AS Total FROM Carrinho INNER JOIN Produtos ON Carrinho.IdProduto = Produtos.IdProdutos WHERE Carrinho.IdUsuario = @Id;";
+            Console.WriteLine(sql);
             using (MySqlConnection con = new MySqlConnection(conn))
             {
                 con.Open();
                 using (MySqlCommand cmd = new MySqlCommand(sql, con))
                 {
+                    cmd.Parameters.AddWithValue("@Id", Id);
+
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-			                      TotalCarrinho carrinhoTotal = new TotalCarrinho();
+			                TotalCarrinho carrinhoTotal = new TotalCarrinho();
                             //carrinhoTotal.ValorTotal = 0;
-                            carrinhoTotal.ValorTotal = reader.GetDecimal("Total");
+                            carrinhoTotal.ValorTotal = reader.GetDouble("Total");
 
                             totalcarrinho.Add(carrinhoTotal);
                         };
@@ -426,7 +431,7 @@ namespace TccCantina.Services
                         while (reader.Read())
                         {
                             Produtos produto = new Produtos();
-                            produto.Id = reader.GetInt32("IdProdutos");
+                            produto.IdProdutos = reader.GetInt32("IdProdutos");
                             produto.Nome = reader.GetString("Nome");
                             produto.Descricao = reader.GetString("Descricao");
                             produto.Valor = reader.GetDouble("Valor");
@@ -441,6 +446,35 @@ namespace TccCantina.Services
             }
 
             return listaProdutos;
+        }
+
+        public static string GerarSenhas()
+        {
+            int Tamanho = 7; // Numero de digitos da senha
+            string senha = string.Empty;
+            for (int i = 0; i < Tamanho; i++)
+            {
+                Random random = new Random();
+                int codigo = Convert.ToInt32(random.Next(48, 122).ToString());
+
+                if ((codigo >= 48 && codigo <= 57) || (codigo >= 97 && codigo <= 122))
+                {
+                    string _char = ((char)codigo).ToString();
+                    if (!senha.Contains(_char))
+                    {
+                        senha += _char;
+                    }
+                    else
+                    {
+                        i--;
+                    }
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            return senha;
         }
     }
 }

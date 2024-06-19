@@ -26,7 +26,7 @@ namespace TccCantina.Views
             lblmatricula.Text = Convert.ToString(modCantina.Matricula);
             lblcurso.Text = modCantina.Curso;
             lbltipo.Text = modCantina.Tipo;
-            idUser = modCantina.Id;
+            idUser = Convert.ToInt32(modCantina.IdUsuario);
             //txtNomeUser.Text = BdCantina.nomePessoa(id);
         }
 
@@ -40,7 +40,7 @@ namespace TccCantina.Views
                 lsvProdutos.ItemsSource = Carrinho;
             }
             List<TotalCarrinho> totalCarrinhoList = BdCantina.ValorCarrinho(idUser);
-            decimal total = totalCarrinhoList.Sum(tc => tc.ValorTotal);
+            double total = totalCarrinhoList.Sum(tc => tc.ValorTotal);
             txtValorTotal.Text = total.ToString();
 
         }

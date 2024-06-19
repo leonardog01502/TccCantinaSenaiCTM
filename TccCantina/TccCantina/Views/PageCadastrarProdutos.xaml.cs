@@ -72,7 +72,7 @@ namespace TccCantina.Views
                 {
                     Nome = txtNome.Text,
                     Descricao = txtDescricao.Text,
-                    Valor = Convert.ToDecimal(txtValor.Text),
+                    Valor = Convert.ToDouble(txtValor.Text),
                     Tipo = pickerTipo.SelectedItem.ToString(),
                     Foto = imageData.Length > 0 ? imageData : null,
                 };

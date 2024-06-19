@@ -44,7 +44,7 @@ namespace TccCantina.Views
         {
             if (e.Item is Produtos produtoSelecionado)
             {
-                var popUpContentView = new PagePopUp(produtoSelecionado.Id);
+                var popUpContentView = new PagePopUp(produtoSelecionado.IdProdutos);
                 var popupPage = new ContentPage
                 {
                     Content = popUpContentView,

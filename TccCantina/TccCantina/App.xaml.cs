@@ -18,7 +18,7 @@ namespace TccCantina
         protected override async void OnStart()
         {
             string storedEmail = await SecureStorage.GetAsync("@Email");
-            string storedSenha = await SecureStorage.GetAsync("Senha");
+            string storedSenha = await SecureStorage.GetAsync("@Senha");
 
             if (!string.IsNullOrEmpty(storedEmail) && !string.IsNullOrEmpty(storedSenha))
             {
