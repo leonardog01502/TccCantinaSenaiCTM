@@ -9,7 +9,7 @@ namespace TccCantina.Services
 {
     public class BdCantina
     {
-        static string conn = @"Host=sql10.freesqldatabase.com;Port=3306;Database=sql10714024;User ID=sql10714024;Password=wGWCbmek3c;Charset=utf8;";
+        static string conn = @"Host=sql.freedb.tech;Port=3306;Database=freedb_TccSenai;User ID=freedb_Pong_2024;Password=axHzV8k$*#FF2!g;Charset=utf8;";
       
         public static string StatusMessage { get; set; }
 
@@ -17,7 +17,7 @@ namespace TccCantina.Services
         {
             try
             {
-                string query = "INSERT INTO Usuarios (Nome, CPF, Email, Senha, Matricula, Curso) VALUES (@Nome, @Cpf, @Email, @Senha, @Matricula, @Curso)";
+                string query = "INSERT INTO usuarios (Nome, CPF, Email, Senha, Matricula, Curso) VALUES (@Nome, @Cpf, @Email, @Senha, @Matricula, @Curso)";
 
                 using (MySqlConnection con = new MySqlConnection(conn))
                 {
@@ -49,7 +49,7 @@ namespace TccCantina.Services
             try
             {
 
-                string query = "SELECT Id FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
+                string query = "SELECT idUsuario FROM usuarios WHERE Email = @Email AND Senha = @Senha";
 
 
                 using (MySqlConnection con = new MySqlConnection(conn))
@@ -84,7 +84,7 @@ namespace TccCantina.Services
         {
             try
             {
-                string query = "SELECT * FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
+                string query = "SELECT * FROM usuarios WHERE Email = @Email AND Senha = @Senha";
 
                 using (MySqlConnection con = new MySqlConnection(conn))
                 {
@@ -121,7 +121,7 @@ namespace TccCantina.Services
         {
             try
             {
-                string query = "SELECT * FROM Usuarios WHERE Id = @Id";
+                string query = "SELECT * FROM usuarios WHERE idUsuario = @Id";
 
                 using (MySqlConnection con = new MySqlConnection(conn))
                 {
@@ -135,7 +135,7 @@ namespace TccCantina.Services
                             ModCantina modCantinaRetornar = new ModCantina();
                             while (reader.Read())
                             {
-                                modCantinaRetornar.IdUsuario = reader.GetInt32("Id");
+                                modCantinaRetornar.IdUsuario = reader.GetInt32("idUsuario");
                                 modCantinaRetornar.Nome = reader.GetString("Nome");
                                 modCantinaRetornar.Cpf = reader.GetString("Cpf");
                                 modCantinaRetornar.Email = reader.GetString("Email");
@@ -159,7 +159,7 @@ namespace TccCantina.Services
         {
             try
             {
-                string query = "SELECT Produtos.*, Usuarios.*, Carrinho.* FROM Produtos, Usuarios, Carrinho WHERE Carrinho.IdUsuario = Usuarios.IdUsuario AND Carrinho.IdProdutos = Produtos.IdProdutos";
+                string query = "SELECT Produtos.*, usuarios.*, Carrinho.* FROM Produtos, Usuarios, Carrinho WHERE Carrinho.IdUsuario = Usuarios.IdUsuario AND Carrinho.IdProdutos = Produtos.IdProdutos";
                 string query2 = "INSERT INTO Carrinho()";
 
                 using (MySqlConnection con = new MySqlConnection(conn))
@@ -213,7 +213,7 @@ namespace TccCantina.Services
         public static List<CarrinhoFiltrado> ListarCarrinho(int id)
         {
             List<CarrinhoFiltrado> listacarrinho = new List<CarrinhoFiltrado>();
-            string sql1 = "SELECT Carrinho.*,Produtos.* from Carrinho INNER JOIN Produtos ON Carrinho.IdProduto = Produtos.IdProdutos Where Carrinho.IdUsuario = @Id";
+            string sql1 = "SELECT Carrinho.*,Produtos.* from Carrinho INNER JOIN Produtos ON Carrinho.IdProduto = Produtos.idProdutos Where Carrinho.IdUsuario = @Id";
             using (MySqlConnection con = new MySqlConnection(conn))
             {
                 con.Open();
@@ -287,9 +287,14 @@ namespace TccCantina.Services
                         while (reader.Read())
                         {
 			                TotalCarrinho carrinhoTotal = new TotalCarrinho();
-                            //carrinhoTotal.ValorTotal = 0;
-                            carrinhoTotal.ValorTotal = reader.GetDouble("Total");
-
+                            if (reader.IsDBNull(reader.GetOrdinal("Total")))
+                            {
+                                carrinhoTotal.ValorTotal = 0;
+                            }
+                            else
+                            {
+                                carrinhoTotal.ValorTotal = reader.GetInt32("Total");
+                            }
                             totalcarrinho.Add(carrinhoTotal);
                         };
                     }

@@ -37,22 +37,12 @@ namespace TccCantina.Models
         public byte[] Foto { get; set; }
     }
 
-    public class Carrinho
-    {
-        public int IdCarrinho { get; set; }
-        public int IdUsuario { get; set; }
-        public int IdProduto { get; set; }
-        public int Quantidade { get; set; }
-        public byte[] Foto { get; set; }
-    }
-
     public class CarrinhoFiltrado
     {
         public int IdCarrinhoF { get; set; }
         public String Nome { get; set; }
         public int Quantidade { get; set; }
         public Double Valor { get; set; }
-        public int IdCarrinho { get; set; }
     }
 
     public class TotalCarrinho
