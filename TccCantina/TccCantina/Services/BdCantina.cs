@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using MySqlConnector;
 using TccCantina.Models;
+using SQLite;
 
 namespace TccCantina.Services
 {

@@ -26,6 +26,7 @@
   <ItemGroup>
     <PackageReference Include="Microcharts" Version="0.9.5.9" />
     <PackageReference Include="MySqlConnector" Version="2.3.7" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />
     <PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
   </ItemGroup>
