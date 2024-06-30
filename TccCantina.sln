@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TccCantina.Android", "TccCantina\TccCantina.Android\TccCantina.Android.csproj", "{94A2DB83-59D5-45EF-9F15-C639285785F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TccCantina", "TccCantina\TccCantina\TccCantina.csproj", "{FAB3B8DD-4236-4341-A6D4-128809FD6788}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TccCantina", "TccCantina\TccCantina\TccCantina.csproj", "{FAB3B8DD-4236-4341-A6D4-128809FD6788}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

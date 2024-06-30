@@ -18,7 +18,7 @@ namespace TccCantina.Services
         {
             try
             {
-                string query = "INSERT INTO usuarios (Nome, CPF, Email, Senha, Matricula, Curso) VALUES (@Nome, @Cpf, @Email, @Senha, @Matricula, @Curso)";
+                string query = "INSERT INTO usuarios (Nome, Cpf, Email, Senha, Matricula, Curso) VALUES (@Nome, @Cpf, @Email, @Senha, @Matricula, @Curso)";
 
                 using (MySqlConnection con = new MySqlConnection(conn))
                 {
@@ -31,7 +31,6 @@ namespace TccCantina.Services
                         cmd.Parameters.AddWithValue("@Senha", Usuario.Senha);
                         cmd.Parameters.AddWithValue("@Matricula", Usuario.Matricula);
                         cmd.Parameters.AddWithValue("@Curso", Usuario.Curso);
-                        cmd.Parameters.AddWithValue("@Telefone", Usuario.Telefone);
                         cmd.ExecuteNonQuery();
                     }
                     con.Close();
@@ -156,21 +155,15 @@ namespace TccCantina.Services
             }
         }
 
-            public static void AdicionarCarrinho(int ID, int quantidade)
+        public static void AdicionarCarrinho(int ID, int quantidade)
         {
             try
             {
-                string query = "SELECT Produtos.*, usuarios.*, Carrinho.* FROM Produtos, Usuarios, Carrinho WHERE Carrinho.IdUsuario = Usuarios.IdUsuario AND Carrinho.IdProdutos = Produtos.IdProdutos";
-                string query2 = "INSERT INTO Carrinho()";
+                string query2 = "INSERT INTO `Carrinho`(`IdUsuario`, `IdProduto`, `Quantidade`) VALUES ('@IdUsuario','@IdUsuario','@Quantidade')";
 
                 using (MySqlConnection con = new MySqlConnection(conn))
                 {
                     con.Open();
-                    using (var cmd = new MySqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@Carrinho.IdProdutos", ID);
-                        cmd.ExecuteNonQuery();
-                    }
                     using (var cmd = new MySqlCommand(query2, con))
                     {
                         cmd.Parameters.AddWithValue("@IdProdutos", ID);
@@ -243,7 +236,7 @@ namespace TccCantina.Services
         public static List<ModCantina> listarCliente()
         {
             List<ModCantina> listacliente = new List<ModCantina>();
-            string sql = "SELECT * FROM Usuarios";
+            string sql = "SELECT * FROM usuarios";
             using (MySqlConnection con = new MySqlConnection(conn))
             {
                 con.Open();
@@ -254,14 +247,13 @@ namespace TccCantina.Services
                         while (reader.Read())
                         {
                             ModCantina cliente = new ModCantina();
-                            cliente.IdUsuario = reader.GetInt32("Id");
+                            cliente.IdUsuario = reader.GetInt32("idUsuario");
                             cliente.Nome = reader.GetString("Nome");
                             cliente.Cpf = reader.GetString("Cpf");
                             cliente.Email = reader.GetString("Email");
                             cliente.Matricula = reader.GetInt32("Matricula");
                             cliente.Curso = reader.GetString("Curso");
                             cliente.Tipo = reader.GetString("Tipo");
-                            cliente.Telefone = reader.GetString("Telefone");
                             listacliente.Add(cliente);
 			            };
                     }
@@ -294,7 +286,7 @@ namespace TccCantina.Services
                             }
                             else
                             {
-                                carrinhoTotal.ValorTotal = reader.GetInt32("Total");
+                                carrinhoTotal.ValorTotal = reader.GetDouble("Total");
                             }
                             totalcarrinho.Add(carrinhoTotal);
                         };

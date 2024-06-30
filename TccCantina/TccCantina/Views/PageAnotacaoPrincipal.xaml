@@ -10,7 +10,7 @@
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                                    <Label Text="{Binding Id,StringFormat='Id do Cliente: {0}'}" FontSize="16" TextColor="Blue" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Id,StringFormat='Id do Cliente: {0}'}" FontSize="16" TextColor="Blue" FontAttributes="Bold" Margin="0,-10"/>
                                     <Label Text="{Binding Nome,StringFormat='Nome do Cliente: {0}'}" FontSize="16" FontAttributes="Bold"/>
                                     <Label Text="{Binding Cpf,StringFormat='CPF do Cliente: {0}'}" FontSize="16" FontAttributes="Bold"/>
                                     <Label Text="{Binding Email,StringFormat='Email do Cliente: {0}'}" FontSize="16" FontAttributes="Bold"/>
